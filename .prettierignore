@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist
+
+# Ignore all static files:
+**/*.html
+**/*.md
+**/*.mdx
