@@ -15,7 +15,6 @@ const config: Config = {
   semi: true,
   singleQuote: true,
   trailingComma: 'all',
-  singleAttributePerLine: true,
   tabWidth: 2,
   useTabs: false,
   printWidth: 100,
