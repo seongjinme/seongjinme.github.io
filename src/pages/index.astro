@@ -3,17 +3,16 @@ import Base from '@/layouts/Base.astro';
 
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
+const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <Base>
-  <h1>seongjin.me</h1>
   <ul>
-    {posts.map((post) => (
+    {articles.map((article) => (
       <li>
-        <a href={`/${post.id}/`}>{post.data.title}</a>
+        <a href={`/${article.id}/`}>{article.data.title}</a>
       </li>
     ))}
   </ul>
