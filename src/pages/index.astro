@@ -1,5 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
+import ArticleList from '@/components/ArticleList.astro';
+import Profile from '@/components/Profile.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -9,11 +11,11 @@ const articles = (await getCollection('articles')).sort(
 ---
 
 <Base>
-  <ul>
-    {articles.map((article) => (
-      <li>
-        <a href={`/${article.id}/`}>{article.data.title}</a>
-      </li>
-    ))}
-  </ul>
+  <Profile />
+
+  <h2>Articles</h2>
+  <ArticleList articles={articles.slice(0, 7)} />
+  <a class="all-articles-link" href="/articles/">
+    View all {articles.length} articles
+  </a>
 </Base>

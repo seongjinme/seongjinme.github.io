@@ -26,7 +26,8 @@ const { Content } = await render(article);
 >
   <article>
     <h1>{article.data.title}</h1>
-    <p>{article.data.pubDate.toLocaleDateString('ko-KR')}</p>
+    <p class="article-description">{article.data.description}</p>
+    <p class="article-pubdate">{article.data.pubDate.toLocaleDateString('ko-KR')}</p>
     <Content />
   </article>
 </Base>
