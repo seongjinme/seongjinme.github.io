@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+
 import Base from '@/layouts/Base.astro';
+import { formatDate } from '@/utils/format-date';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -26,8 +28,8 @@ const { Content } = await render(article);
 >
   <article>
     <h1>{article.data.title}</h1>
-    <p class="article-description">{article.data.description}</p>
-    <p class="article-pubdate">{article.data.pubDate.toLocaleDateString('ko-KR')}</p>
+    <p class="article-meta">{formatDate(article.data.pubDate)}</p>
+    <hr />
     <Content />
   </article>
 </Base>

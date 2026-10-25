@@ -1,4 +1,5 @@
 ---
+import { formatDate } from '@/utils/format-date';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -6,14 +7,6 @@ interface Props {
 }
 
 const { articles } = Astro.props;
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'Asia/Seoul',
-  });
 ---
 
 <ul class="article-list">
