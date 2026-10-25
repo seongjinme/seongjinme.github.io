@@ -13,9 +13,11 @@ const articles = (await getCollection('articles')).sort(
 <Base>
   <Profile />
 
-  <h2>Articles</h2>
-  <ArticleList articles={articles.slice(0, 7)} />
-  <a class="all-articles-link" href="/articles/">
-    View all {articles.length} articles
-  </a>
+  <section>
+    <h2>Articles</h2>
+    <ArticleList articles={articles.slice(0, 5)} />
+    <a class="all-articles-link" href="/articles/">
+      View all {articles.length} articles →
+    </a>
+  </section>
 </Base>

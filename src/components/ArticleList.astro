@@ -18,14 +18,12 @@ const formatDate = (date: Date) =>
 
 <ul class="article-list">
   {articles.map((article) => (
-    <li>
-      <a class="article-link-box" href={`/${article.id}/`}>
-        <div>
+    <li class="article-item">
+      <a class="article-item-container" href={`/${article.id}/`}>
+        <div class="article-content">
           <h3 class="article-title">{article.data.title}</h3>
-          <span>{article.data.description}</span>
-        </div>
-        <div>
-          <span class="pub-date">{formatDate(article.data.pubDate)}</span>
+          <span class="article-description">{article.data.description}</span>
+          <span class="article-meta">{formatDate(article.data.pubDate)}</span>
         </div>
       </a>
     </li>
