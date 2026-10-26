@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import imageFigures from './src/plugins/image-figures.ts';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  integrations: [imageFigures()],
+});
