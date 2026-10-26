@@ -5,3 +5,7 @@ dist
 **/*.html
 **/*.md
 **/*.mdx
+
+# Ignore the package lock files
+package-lock.json
+pnpm-lock.yaml
