@@ -14,8 +14,6 @@ featureImage: "/content/images/2023/02/cover-1.png"
 
 ![템플릿 코드를 생성 중인 ChatGPT 화면](/content/images/2023/02/chatgpt-experiment.gif)
 
-*템플릿 코드를 생성 중인 ChatGPT 화면*
-
 그래서 실험해 보았다. **오직 프롬프트 입력 만으로 ChatGPT에서 웹 애플리케이션 구현에 필요한 모든 코드를 생성하고 이를 실제로 동작시켜 보았다.** 이번 글에서는 그 실험의 과정과 결과, 그리고 이를 통해 얻게 된 시사점을 소개할 것이다.
 
 > 🖥️ 실험 결과로 완성된 애플리케이션 코드는 아래 리포지터리에서 확인할 수 있다.  
@@ -32,8 +30,6 @@ ChatGPT는 **같은 세션 안에서 이루어진 일정 분량의 대화 내용
 이처럼 **대화의 맥락(Context)이 보존되는 환경**에서는 일회성 입출력만 가능한 기존 챗봇에 비해 훨씬 다채로운 방식으로 작업을 이어갈 수 있다. 하나의 문제를 해결하는 과정에서 대화를 여러 차례 주고 받으면서 결과물을 개선하거나 확장하는 일이 가능해진 것이다.
 
 ![OpenAI의 ChatGPT 페이지에 소개된 대화 예시](/content/images/2023/02/chatgpt-keeping-context.png)
-
-*OpenAI의 ChatGPT 페이지에 소개된 대화 예시*
 
 ### ChatGPT의 제약사항 : 기억 및 응답 분량의 제한
 
@@ -95,8 +91,6 @@ Use only one model. Give me just codes, not with descriptions.
 
 !["Nemo"의 모델(Model) 코드 생성 결과](/content/images/2023/02/chatgpt-exp-1-models.png)
 
-*"Nemo"의 모델(Model) 코드 생성 결과*
-
 ### 뷰(View) 만들기
 
 ```
@@ -128,8 +122,6 @@ Here are views I need:
 
 !["Nemo"의 뷰(View) 코드 생성 결과](/content/images/2023/02/chatgpt-exp-2-views.png)
 
-*"Nemo"의 뷰(View) 코드 생성 결과*
-
 ### URL 패턴 만들기
 
 ```
@@ -139,8 +131,6 @@ Next, create URLs based on the views you created above.
 각각의 URL에 연결할 뷰(View)가 이미 생성되어 있으므로, 이 맥락만 상기시킨다면 URL 패턴 생성도 손쉽게 진행된다. [결과는 다음과 같다.](https://github.com/seongjinme/Nemo-Coded-by-ChatGPT/blob/main/nemo/urls.py)
 
 !["Nemo"의 URL 패턴 생성 결과](/content/images/2023/02/chatgpt-exp-3-urls.png)
-
-*"Nemo"의 URL 패턴 생성 결과*
 
 ### 템플릿(Template) 만들기
 
@@ -160,8 +150,6 @@ Use Bootstrap from jsDelivr.
 
 !["Nemo"의 베이스 템플릿 코드 생성 결과](/content/images/2023/02/chatgpt-exp-4-template-base.png)
 
-*"Nemo"의 베이스 템플릿 코드 생성 결과*
-
 #### 세부 템플릿 만들기
 
 템플릿을 만들 때에는 지금까지 프롬프트로 입력되어 왔던 앱의 주요 기능(`features`), 모델(`models`), 뷰(`views`) 그리고 URL 패턴(`URLs`) 정보를 모두 참고해야 한다. 그런데 이 정도 단계까지 오면, 주고 받은 문답의 양이 단일 세션 안에서 기억 가능한 범위(약 3,000 단어)를 넘어서면서 그동안의 작업 맥락이 유실되기 시작한다.
@@ -169,8 +157,6 @@ Use Bootstrap from jsDelivr.
 맥락이 유실된 채로 코드가 생성되면 어떤 일이 일어날까? 인덱스 화면(`index.html`) 생성을 시도한 아래 이미지를 보자. 앞서 생성한 `IndexView` 뷰에서는 포스트 목록을 템플릿으로 넘길 때 `posts`라는 컨텍스트(`context`)를 사용했는데, 정작 템플릿을 생성할 때엔 이 정보를 기억하지 못하고 `post_list`라는 이름을 멋대로 지어냈다.
 
 !['posts' 대신 'post_list'가 삽입된 화면](/content/images/2023/02/chatgpt-exp-5-template-index-fail.png)
-
-*'posts' 대신 'post\_list'가 삽입된 화면*
 
 일단 유실된 맥락의 내용은 복구가 불가능하다. 어쩔 수 없이 필요한 내용을 추려서 새 프롬프트로 다시 채워주어야 한다. 이렇게 하여 수정한 인덱스 화면(`index.html`) 생성용 프롬프트는 다음과 같다. 과제 내용을 잊어먹은 친구에게 알려주듯 필요 정보를 간략하게 요약해서 다시 전달했다.
 
@@ -187,8 +173,6 @@ If user is not the author but logged user,
 
 !['posts'를 포함한 주요 구성요소가 잘 삽입된 화면](/content/images/2023/02/chatgpt-exp-5-template-index-success.png)
 
-*'posts'를 포함한 주요 구성요소가 잘 삽입된 화면*
-
 나머지 템플릿들은 코드 내용이 대체로 대동소이하므로 아래 프롬프트로 한 번에 생성했다. 다행히 URL 패턴 정보는 아직 유실되지 않은 상태여서 별 문제 없이 코드가 완성되었다.
 
 ```
@@ -198,8 +182,6 @@ For every form you must add an `action` attribute with proper URL paths you crea
 ```
 
 !["Nemo"의 나머지 템플릿 코드 생성 결과](/content/images/2023/02/chatgpt-exp-6-template-etcs.png)
-
-*"Nemo"의 나머지 템플릿 코드 생성 결과*
 
 ## 버그 수정하기
 
@@ -230,13 +212,9 @@ class LoginView(LoginView):
 
 ![엉뚱한 속성을 가져다 붙인 ChatGPT](/content/images/2023/02/chatgpt-exp-7-bugfix-fail.png)
 
-*엉뚱한 속성을 가져다 붙인 ChatGPT*
-
 `next_page` 속성을 요청했는데 엉뚱한 이름의 속성이 대신 붙었다. 꼼꼼하게 지시한 내용도 곧잘 잊어버리거나 무시하는 모습이 정말 인간적이다. ChatGPT가 가진 또 하나의 인간적인 구석은, 문제를 지적하면 그 내용을 반영한 새 결과물을 내놓는다는 점이다. 이 역시 GPT와 같은 언어 모델이 가진 맥락 기억 능력 덕분에 가능한 일이다.
 
 ![이번에는 올바르게 버그가 수정되었다.](/content/images/2023/02/chatgpt-exp-7-bugfix-success.png)
-
-*이번에는 올바르게 버그가 수정되었다.*
 
 이번에는 `next_page`가 올바르게 삽입되었고, 이미 로그인 한 사용자가 로그인 화면에 접근할 경우를 고려한 `redirect_authenticated_user = True`까지 함께 추가되었다. 이로써 문제가 해결되었다.
 
@@ -246,15 +224,9 @@ class LoginView(LoginView):
 
 ![사용자 등록 및 로그인 화면](/content/images/2023/02/nemo-register-login.gif)
 
-*사용자 등록 및 로그인 화면*
-
 ![새 포스트를 만들어 게시하는 화면](/content/images/2023/02/nemo-post-creation.gif)
 
-*새 포스트를 만들어 게시하는 화면*
-
 ![다른 사용자로 로그인 후 '좋아요'를 남기는 화면](/content/images/2023/02/nemo-login-like.gif)
-
-*다른 사용자로 로그인 후 '좋아요'를 남기는 화면*
 
 물론 이번에 만들어 낸 것은 오직 '가능 여부'만을 확인하기 위해 극단적으로 간소화 한 규격의 애플리케이션이다. 이 정도의 복잡도 만으로도 실제로는 수십 개의 대화 세션과 수만 단어 이상의 프롬프팅 테스트를 사전에 진행해야 했음을 밝혀둔다.
 
@@ -267,8 +239,6 @@ class LoginView(LoginView):
 2023년 2월 기준으로 **프로덕션 환경에서 이런 작업은 거의 불가능하며, 설령 시도하더라도 결과물의 품질이 결코 좋지 못할 것이라는 게 내 의견이다.**
 
 ![ChatGPT는 '요술방망이'가 아니다.](/content/images/2023/02/chatgpt-limitation.jpg)
-
-*ChatGPT는 '요술방망이'가 아니다.*
 
 대부분의 애플리케이션은 일정한 디자인 패턴에 따라 구조화된 코드 체계를 가지게 된다. 그런데 ChatGPT와 같은 생성 AI 서비스의 실질적 기능은 입력받은 프롬프트 다음에 올 내용을 확률적으로 추측하여 생성해주는 것에 불과하다. 이러한 생성물이 의도한 체계에 적합한 형태를 유지하도록 강제하려면, 결국 그 구조에 대한 정보를 GPT와 같은 언어 모델에게 계속적으로 주입해야 한다. ChatGPT의 경우를 예시로 들자면, 채팅을 통해 주고 받는 **모든 문답에 대한 일정한 맥락(Context)이 어떠한 상황에서도 유실 없이 유지**되어야 하는 것이다.
 

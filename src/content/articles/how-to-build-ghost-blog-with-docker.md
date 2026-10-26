@@ -17,8 +17,6 @@ featureImage: "/content/images/2022/02/cover-4.jpg"
 
 ![Lightsail에서 저렴하고 간편하게 인스턴스를 생성할 수 있다.](/content/images/2022/01/Lightsail_price.png)
 
-*Lightsail에서 저렴하고 간편하게 인스턴스를 생성할 수 있다.*
-
 아울러 아래 사항들이 반드시 완료되어 있어야 다음 단계를 진행할 수 있다.
 
 -   [인스턴스에 고정 IP 주소가 연결](https://lightsail.aws.amazon.com/ls/docs/ko_kr/articles/lightsail-create-static-ip)되어 있어야 한다.

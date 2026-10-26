@@ -31,15 +31,11 @@ featureImage: "/content/images/2022/02/cover-3.jpg"
 
 ![Ghost 블로그 기본 테마 화면](/content/images/2022/01/Ghost.jpg)
 
-*Ghost 블로그 기본 테마 화면*
-
 [Ghost](https://ghost.org/)는 오픈소스 CMS다. 내가 원하는 빠른 성능과 군더더기 없는 인터페이스, 깨끗한 디자인을 두루 갖췄다. 자체적으로 [Medium](https://medium.com/)에 견줄 만한 글쓰기 환경을 제공하면서 커스텀 도메인과 스타일, 플러그인을 함께 지원한다. 무엇보다도 현재 글쓰기 도구로 사용 중인 [Ulysses](https://ulysses.app/)와 완벽하게 연동된다는 점이 마음에 들었다.
 
 ![](/content/images/2022/01/Ulysses_1.jpg)
 
-![](/content/images/2022/01/Ulysses_2.jpg)
-
-*Ulysses에서 작성한 글을 블로그에 바로 올리거나, 이미 올라간 글의 정보를 확인하고 다시 업데이트 할 수 있다.*
+![Ulysses에서 작성한 글을 블로그에 바로 올리거나, 이미 올라간 글의 정보를 확인하고 다시 업데이트 할 수 있다.](/content/images/2022/01/Ulysses_2.jpg)
 
 [Ulysses](https://ulysses.app/)와 연동된 [Ghost](https://ghost.org/) 환경에서는 초안 작성부터 퍼블리싱, 그리고 업데이트까지 [모든 과정이 하나의 흐름처럼 매끄럽게 연결된다.](https://help.ulysses.app/integrations/publish-to-ghost) 일단 시스템이 갖춰지면 평소의 글쓰기 루틴을 지키면서 블로그 운영까지 함께 이어갈 수 있다. 굳이 블로깅 도구를 이용해서 글을 다시 편집하거나, 페이지 생성을 위해 빌드를 반복할 필요가 없다. 온전히 글쓰기에만 몰입할 수 있는 환경이라는 목표에 이상적으로 부합한다.
 

@@ -10,8 +10,6 @@ featureImage: "/content/images/2023/05/cover-1.jpg"
 
 ![KinoQuizAI 프로젝트 앱 화면](/content/images/2023/05/kinoquizai-part1-800px-3.gif)
 
-*KinoQuizAI 프로젝트 앱 화면*
-
 이 아이디어를 토대로 지난 4월에 **[KinoQuizAI](https://github.com/seongjinme/KinoQuizAI)**라는 간단한 프로젝트를 만들었다. GPT 언어 모델이 생성한 영화 퀴즈를 풀고 점수를 얻는 웹 게임이다. **ChatGPT와 같은 언어 모델 기반 서비스가 대화형 에이전트 뿐만 아니라 백엔드 기능 수행 도구로써도 유용할 것인가**를 확인하는 것이 목적이었다. 결과는 기대 이상이었다. 이번 글에서는 KinoQuizAI의 개발 과정과 문제 해결 경험, 그리고 후기를 정리하고자 한다.
 
 > 🔗 [KinoQuizAI](https://kinoquiz.app)
@@ -53,8 +51,6 @@ KinoQuizAI 앱의 핵심 동작은 **클라이언트 - 서버 - OpenAI API 간�
 
 ![클라이언트-서버-OpenAI API 간 시퀀스 초안](/content/images/2023/05/project-sequence-1-3.png)
 
-*클라이언트-서버-OpenAI API 간 시퀀스 초안*
-
 1.  클라이언트에서 사용자가 서버로 퀴즈 생성을 요청한다.
 2.  서버는 퀴즈 생성에 필요한 프롬프트를 조합하여 OpenAI API로 전송한다.
 3.  서버는 OpenAI API를 통해 생성된 퀴즈 데이터를 전송 받는다.
@@ -70,8 +66,6 @@ KinoQuizAI 앱의 핵심 동작은 **클라이언트 - 서버 - OpenAI API 간�
 
 ![클라이언트-서버-OpenAI API 간 시퀀스 2안](/content/images/2023/05/project-sequence-2.png)
 
-*클라이언트-서버-OpenAI API 간 시퀀스 2안*
-
 1.  클라이언트에서 사용자가 서버로 퀴즈 생성을 요청한다.
 2.  서버는 새로운 퀴즈 콘텐츠(문항, 선택지, 정답, 해설, IMDb URL 등)를 생성하기 위한 프롬프트를 조합하여 OpenAI API로 전송한다.
 3.  서버는 OpenAI API를 통해 생성된 퀴즈 데이터를 전송 받는다.
@@ -84,8 +78,6 @@ KinoQuizAI 앱의 핵심 동작은 **클라이언트 - 서버 - OpenAI API 간�
 그런데 사용자가 퀴즈를 요청할 때마다 매번 콘텐츠를 생성받도록 하는 방식은 아무래도 비효율적이다. **다른 사용자에 의해 이미 생성되어 DB에 저장된 퀴즈를 신규 사용자에게 우선 제공**하도록 하면 훨씬 효율적이지 않을까? 그래서 다음과 같이 시퀀스를 재설계했다.
 
 ![클라이언트-서버-OpenAI API 간 시퀀스 최종안](/content/images/2023/05/project-sequence-3-1.png)
-
-*클라이언트-서버-OpenAI API 간 시퀀스 최종안*
 
 1.  클라이언트에서 사용자가 서버로 퀴즈 생성을 요청한다.
 2.  서버는 DB에 저장된 사용자의 퀴즈 풀이 이력을 체크한다.
@@ -102,8 +94,6 @@ KinoQuizAI 앱의 핵심 동작은 **클라이언트 - 서버 - OpenAI API 간�
 ERD를 그릴 때엔 [dbdiagram.io](https://dbdiagram.io/) 서비스를 이용했다. 이 서비스는 데이터베이스 마크업 언어인 [DBML](https://dbml.dbdiagram.io/home/)로 DB 스키마와 구조를 마치 코딩하듯이 시각화할 수 있게 해준다. 아래 이미지는 2023년 5월 현재 운영 중인 버전의 데이터 테이블 구성을 나타낸 다이어그램이다.
 
 ![KinoQuizAI 앱의 DB 테이블 구조](/content/images/2023/05/project-erd.png)
-
-*KinoQuizAI 앱의 DB 테이블 구조*
 
 여기서 `Quiz` 테이블의 역할이 가장 중요하다. 이 앱이 정상적으로 동작하려면, OpenAI API를 통해 생성된 콘텐츠가 파싱 및 전처리 단계를 거쳐 이 테이블의 `question`, `option`, `answer`, `explanation`, `imdb_url` 필드에 각각 차곡차곡 쌓여야 한다. 이 프로세스가 오류 없이 돌아가려면 생성 결과물의 꾸준한 일관성이 보장되어야 한다. 이 일관성을 만들어내기 위해선 결국 프롬프트 엔지니어링에 공을 들여야 했다.
 
@@ -152,8 +142,6 @@ According to the conditions above, generate each element of the quiz. Follow the
 **In-context Learning**은 [프롬프트에 작업 지시문(task description)과 더불어 하나 이상의 입출력 예시(few-shot)를 함께 포함시키는 프롬프팅 기법](http://ai.stanford.edu/blog/understanding-incontext/)으로, [GPT-3 논문](https://arxiv.org/abs/2005.14165)에 소개된 것처럼 **Few-shot Learning**으로도 알려져 있다. 작업을 지시할 때 사용자가 원하는 올바른 형태의 입출력 예시를 언어 모델에게 인지시킨 뒤, 프롬프트의 최하단에 예시와 유사한 입력 문구를 더함으로써 실제 결과물 또한 그러한 양식을 따르도록 유도하는 것이다. [OpenAI 공식 문서의 "Quickstart"에 포함된 "Add some examples"의 내용](https://platform.openai.com/docs/quickstart/add-some-examples)이 이 기법을 활용한 대표적인 예시다.
 
 ![OpenAI의 In-context Learning 프롬프팅 예시 화면](/content/images/2023/05/openai-sample.gif)
-
-*OpenAI의 In-context Learning 프롬프팅 예시 화면*
 
 다만 이 프로젝트에서는 여러 실험 끝에 하나의 예시만 프롬프트에 포함시키는 **One-shot** 기법을 사용했다. 이유는 다음과 같다.
 
@@ -209,8 +197,6 @@ parameters = {
 
 ![생성 직후 KinoQuizAI DB에 전처리되어 축적된 퀴즈 데이터 화면](/content/images/2023/05/project-data-input-success-1.png)
 
-*생성 직후 KinoQuizAI DB에 전처리되어 축적된 퀴즈 데이터 화면*
-
 ## 문제 해결 및 개선 경험
 
 ### 퀴즈 소재가 특정 영화에 편중되는 문제 해결하기
@@ -223,13 +209,9 @@ parameters = {
 
 ![퀴즈 소재로 삼을 영화 목록을 엑셀로 정리 중인 화면](/content/images/2023/05/project-p1-movie-list-1.png)
 
-*퀴즈 소재로 삼을 영화 목록을 엑셀로 정리 중인 화면*
-
 영화 목록을 선별하는 작업은 엑셀로 간단히 진행했다. 1996년부터 2021년까지 IMDb Top 250 Movie 리스트를 뽑은 뒤, **20만 개 이상의 사용자 별점을 획득한 상위 300개**를 선별했다. 이렇게 선별한 영화 목록을 DB에 `quiz_movie` 테이블로 올리고, 퀴즈를 매번 생성할 때 각 영화에 부여된 `id` 값이 `Foreign Key` 값으로 따라붙도록 수정했다.
 
 ![Quiz 테이블과 Movie 테이블을 서로 연결한 결과](/content/images/2023/05/project-p1-quiz-with-movie-id-1.png)
-
-*Quiz 테이블과 Movie 테이블을 서로 연결한 결과*
 
 그 결과, KinoQuizAI 앱은 매번 새롭게 주어지는 영화 제목에 맞춰 퀴즈 생성을 올바르게 해냈다. 훨씬 다양한 영화들을 소재로 퀴즈를 만들게 된 만큼, 콘텐츠의 다양성과 깊이도 한층 늘어나게 되었다.
 
@@ -238,8 +220,6 @@ parameters = {
 생성 데이터가 누적되면서 이전에는 보이지 않았던 또다른 문제가 드러났다. 프롬프트에 `4개의 선택지 중 임의의 하나를 정답으로 만들 것`이라는 조건이 명시되었는데도, 실제로 생성된 **퀴즈들 중 약 70%의 정답이 `(A)`로 고정되는 현상**을 보였다. 즉, GPT 언어 모델은 **여러 선택지를 가진 퀴즈를 생성할 때 가장 앞선 순서의 선택지를 정답으로 두고 내용을 채워넣는 경향**을 보이고 있었다.
 
 ![대다수의 퀴즈 정답이 (A)로 계속 고정되는 상황](/content/images/2023/05/project-p2-3.png)
-
-*대다수의 퀴즈 정답이 (A)로 계속 고정되는 상황*
 
 어느 한 가지 선택지로만 쭈욱 찍었는데 그게 다 정답이 되는 퀴즈 앱을 좋아할 사람은 없을 것이다. 이를 해결하기 위해 처음에는 프롬프트 엔지니어링을 시도했으나, 반복된 실험에도 별다른 효과를 보지 못했다.
 
@@ -330,8 +310,6 @@ return JsonResponse({
 이렇게 하여 `JSON` 포맷으로 전송된 `user_status.life` 값은 프론트에서 잔여 목숨을 표기하는 용도로 쓰고, `user_status.game_continue` 값은 게임 종료 여부를 판별하여 퀴즈 화면 하단의 버튼을 변경하는 용도로 사용했다.
 
 ![목숨 기능이 추가된 KinoQuizAI의 게임 화면](/content/images/2023/05/kinoquizai-part2-800px-3.gif)
-
-*목숨 기능이 추가된 KinoQuizAI의 게임 화면*
 
 이처럼 목숨 기능을 추가한 덕분에 **퀴즈 게임에 대한 진입 장벽을 낮추면서 재도전을 자연스럽게 유도하는 사용자 경험**을 더할 수 있었다.
 

@@ -14,17 +14,17 @@ featureImage: "/content/images/2022/02/cover-8.png"
 
 따라서, 멀티 컨테이너 파드는 **메인 프로세스를 네트워크 또는 스토리지의 밀접한 공유가 필요한 다른 컨테이너와 함께 운영**하고자 할 때에 고려하는 것이 바람직하다. 이러한 경우를 쓸모에 따라 명확히 구분하여 놓은 것이 바로 아래와 같은 **파드 디자인 패턴**들이다. 이들은 단일 노드에서 구동되는 단일 파드에 적용 가능한 것들로, 마지막에 소개할 "초기화(Init) 컨테이너" 외에는 모두 구글의 Brendan Burns와 David Oppenheimer가 2016년에 발표한 ["Design patterns for container-based distributed systems"](https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf)라는 논문에서 정리된 분류에 해당한다.
 
-![멀티 컨테이너 파드의 대표적인 디자인 패턴으로는 Sidecar, Adapter, Ambassador 등이 있다. https://matthewpalmer.net/kubernetes-app-developer/articles/multi-container-pod-design-patterns.html](/content/images/2022/02/pod-design-patterns.png)
+![멀티 컨테이너 파드의 대표적인 디자인 패턴으로는 Sidecar, Adapter, Ambassador 등이 있다.](/content/images/2022/02/pod-design-patterns.png)
 
-*멀티 컨테이너 파드의 대표적인 디자인 패턴으로는 Sidecar, Adapter, Ambassador 등이 있다. (이미지 출처 : [Matthew Palmer](https://matthewpalmer.net/kubernetes-app-developer/articles/multi-container-pod-design-patterns.html))*
+이미지 출처: [Matthew Palmer](https://matthewpalmer.net/kubernetes-app-developer/articles/multi-container-pod-design-patterns.html)
 
 ## 사이드카(Sidecar) 컨테이너
 
 기존 파드의 기능을 향상하기 위해 **파드의 파일시스템을 공유하는 형태의 보조 컨테이너**를 **사이드카 컨테이너**라고 부른다. 쿠버네티스 환경에서 실제 이용되는 많은 수의 멀티 컨테이너 파드가 이런 디자인 패턴을 따르고 있다.
 
-![사이드카(Sidecar) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : Brendan Burns, David Oppenheimer의 논문)](/content/images/2022/02/sidecar-container.png)
+![사이드카(Sidecar) 컨테이너가 포함된 파드의 구성 형태](/content/images/2022/02/sidecar-container.png)
 
-*사이드카(Sidecar) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns))*
+이미지 출처: [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns)
 
 예를 들어 Nginx가 돌아가는 파드 안에 Nginx의 로그를 수집하는 사이드카 컨테이너를 두는 경우를 생각해보자. 이 경우 아래와 같은 구성이 가능할 것이다.
 
@@ -76,9 +76,9 @@ spec:
 
 **어댑터 컨테이너**는 주로 파드에 탑재된 특정 애플리케이션의 출력물 규격을 필요에 맞게 다듬는 용도로 쓰인다.
 
-![어댑터(Adapter) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : Brendan Burns, David Oppenheimer의 논문)](/content/images/2022/02/adapter-container.png)
+![어댑터(Adapter) 컨테이너가 포함된 파드의 구성 형태](/content/images/2022/02/adapter-container.png)
 
-*어댑터(Adapter) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns))*
+이미지 출처: [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns)
 
 오픈소스 애플리케이션을 이용하다 보면, 각각 엇비슷한 역할을 하는 프로그램인 경우에도 출력물의 규격이 제각각인 사례가 많다. 예를 들어 어떤 서버에서는 로그의 날짜 포맷이 `YYYY-MM-DD`인데 다른 서버에서는 `DD/MM/YYYY`인 경우가 있을 것이다. 이런 환경에서 로그 수집기로 로그들을 하나로 취합하다 보면 이처럼 서로 다른 규격 때문에 문제가 발생할 수 있다.
 
@@ -133,9 +133,9 @@ spec:
 
 **앰버서더 컨테이너**는 **파드 외부의 서비스에 대한 엑세스를 간소화**하는 특수한 유형의 컨테이너다. 메인 컨테이너가 수행해야 할 네트워크 통신을 대신해주는 역할을 소화한다고 해서 이런 이름이 붙었다.
 
-![앰버서더(Ambassador) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : Brendan Burns, David Oppenheimer의 논문)](/content/images/2022/02/ambassador-container.png)
+![앰버서더(Ambassador) 컨테이너가 포함된 파드의 구성 형태](/content/images/2022/02/ambassador-container.png)
 
-*앰버서더(Ambassador) 컨테이너가 포함된 파드의 구성 형태 (이미지 출처 : [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns))*
+이미지 출처: [Brendan Burns, David Oppenheimer의 논문](https://www.usenix.org/conference/hotcloud16/workshop-program/presentation/burns)
 
 이러한 구조를 가진 파드에서 메인 컨테이너는 오직 앰버서더 컨테이너를 통해서만 외부와 통신이 가능하며, 외부로부터의 접근 또한 앰버서더 컨테이너를 통해서만 가능하다. 즉, 앰버서더 컨테이너는 **메인 컨테이너의 네트워크를 전담하는 프록시 역할**을 수행하는 것이다.
 

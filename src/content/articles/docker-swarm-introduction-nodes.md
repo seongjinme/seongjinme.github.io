@@ -104,8 +104,6 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 ![스웜 모드(Swarm Mode)가 Active된 상태](/content/images/2022/08/swarm-active.png)
 
-*스웜 모드(Swarm Mode)가 Active된 상태*
-
 ## 클러스터 만들기
 
 ### 단일 노드 클러스터
@@ -173,8 +171,6 @@ SWMTKN-1-3h415tip2x8wh4xyv9g3uel3sp6ldrgsayusfvf4ebb8b36gn1-e5pshwokqu9u1o05wzh3
 
 ![JSON 포맷으로 출력된 노드 상세 정보](/content/images/2022/08/node-inspect-json.png)
 
-*JSON 포맷으로 출력된 노드 상세 정보*
-
 읽어보기 편한 포맷으로 가공된 출력물을 보고 싶다면 `--pretty` 플래그를 함께 붙여주자.
 
 ```bash
@@ -183,8 +179,6 @@ ubuntu@sjhong-node-01:~$ docker node inspect self --pretty
 ```
 
 ![좀 더 읽기 쉽게 가공된 노드 상세 정보](/content/images/2022/08/node-inspect-pretty.png)
-
-*좀 더 읽기 쉽게 가공된 노드 상세 정보*
 
 ### 노드 목록 조회
 
@@ -293,8 +287,6 @@ Manager sjhong-node-03 demoted in the swarm.
 [노드 유형 변경과 관련된 SwarmKit의 코드](https://github.com/moby/swarmkit/blob/master/manager/controlapi/node.go#L199)를 살펴본 바로는, 위의 에러 응답은 복수의 매니저 노드를 운영하는 클러스터에서 고가용성(High Availability)을 위한 **"정족수(raft quorum)"**에 영향을 미치는 행위에 제동을 걸기 위한 것으로 추정된다. 개인적인 견해지만, `demote` 작업은 클러스터가 필요로 하는 정족수의 기준을 낮출 뿐이지 정족수 자체를 위협하는 작업이 아니므로 이런 오류 처리를 굳이 할 필요가 없다고 생각한다. 사실 이는 [이미 2016년에 논의를 거쳐 수정사항이 반영된 이슈이기도 한데](https://github.com/moby/moby/issues/23903), 왜 아직 이런 현상이 간헐적으로 발생하는지는 불명확하다.
 
 ![잠깐... "정족수"란게 대체 뭐죠?](/content/images/2022/08/wait-what.jpg)
-
-*잠깐... "정족수"란게 대체 뭐죠?*
 
 갑자기 새로운 용어가 나타나서 당황스럽겠지만, 일단 넘어가기로 하자. **"정족수(raft quorum)"**라는 용어는 앞으로도 노드를 관리하는 과정에서 종종 마주하게 될 것이다. 이 용어의 개념이 무엇인지는 다음 포스팅에서 좀 더 자세히 설명할 예정이다.
 
@@ -475,8 +467,6 @@ y8rcglngmyfsint6vljzrvj6h     sjhong-node-03   Down      Active         Unreacha
 
 ![... 그러면 문제 없는 것 아닌가요?](/content/images/2022/08/no-problem.jpg)
 
-*... 그러면 문제 없는 것 아닌가요?*
-
 **그렇다면 이번엔 3개의 노드 중 2개(`01`, `03`)만 매니저 노드인 경우를 가정하자.** 이 상태로 `sjhong-node-03`에서 `docker swarm leave`를 실행한 결과는 다음과 같다.
 
 ```bash
@@ -497,8 +487,6 @@ Error response from daemon: rpc error: code = Unknown desc = The swarm does not 
 ```
 
 ![... 아깐 괜찮았는데 이번엔 죽었다고요?](/content/images/2022/08/sorry-i-killed-the-cluster.jpg)
-
-*... 아깐 괜찮았는데 이번엔 죽었다고요?*
 
 3개 노드로 구성된 클러스터에서, 2개의 매니저 노드 중 하나만 없어진 상태인데 **클러스터 관리 기능이 완전히 멈춰버렸다.** 온전히 동작하는 매니저 노드가 아직 남아있는데도 말이다.
 

@@ -13,8 +13,6 @@ featureImage: "/content/images/2022/02/cover-7.png"
 
 ![파드(Pod) 자체가 도커의 고래 이미지를 따서 만든 명칭이다.](/content/images/2022/02/pods.jpg)
 
-*파드(Pod) 자체가 도커의 고래 이미지를 따서 만든 명칭이다.*
-
 파드는 다음과 같은 특징을 가진다.
 
 1.  기본적으로 하나의 파드에는 **하나 이상의 컨테이너**가 포함된다. 필요에 따라 하나의 파드에 여러 컨테이너를 포함시킬 수 있다.
@@ -207,9 +205,9 @@ kubectl get pod <파드명> -o jsonpath='{.status.phase}'
 
 컨테이너 상태 진단을 위한 프로브는 크게 **Liveness**, **Readiness**, **Startup**의 세 종류로 구분된다. 이들의 용도와 동작 방식을 요약하면 다음과 같다.
 
-![프로브들의 동작을 순서도로 표현하면 위와 같다. https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-6-adding-health-checks-with-liveness-readiness-and-startup-probes/](/content/images/2022/02/probes-1.png)
+![프로브들의 동작을 순서도로 표현하면 위와 같다.](/content/images/2022/02/probes-1.png)
 
-*프로브들의 동작을 순서도로 표현하면 위와 같다. (이미지 출처 : [Andrew Lock](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-6-adding-health-checks-with-liveness-readiness-and-startup-probes/))*
+이미지 출처: [Andrew Lock](https://andrewlock.net/deploying-asp-net-core-applications-to-kubernetes-part-6-adding-health-checks-with-liveness-readiness-and-startup-probes/)
 
 1.  **Liveness Probe** : 컨테이너가 멈추거나 비정상 종료되는 상황이 감지되면 해당 컨테이너를 재시작시킨다.
 2.  **Readiness Probe** : 컨테이너가 요청(Request)을 처리할 수 없는 상황이 감지되면 해당 파드로의 로드밸런싱을 중단시킨다. 단, 파드 자체는 건드리지 않는다.

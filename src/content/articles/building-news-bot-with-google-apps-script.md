@@ -14,9 +14,7 @@ featureImage: "/content/images/2022/05/cover-1.jpg"
 
 해본 적 없는 일이더라도 해낼 수 있어 보인다면 일단 시작해보는 편이다. 오래 전 컨설팅 회사에서 일하던 시절부터 꼭 만들고 싶었던 도구이기도 했다. 하물며 사랑하는 사람이 필요하다니까. 그래서 **["Naver News Fetching Bot"](https://github.com/seongjinme/naver-news-fetching-bot)**을 만들게 되었다.
 
-![](/content/images/2022/05/screenshot_pc_teams.gif)
-
-*네이버 뉴스봇이 Microsoft Teams 채널로 전송한 뉴스 게시물 화면*
+![네이버 뉴스봇이 Microsoft Teams 채널로 전송한 뉴스 게시물 화면](/content/images/2022/05/screenshot_pc_teams.gif)
 
 **["Naver News Fetching Bot"](https://github.com/seongjinme/naver-news-fetching-bot)**은 원하는 검색어가 포함된 최신 네이버 뉴스를 **슬랙(Slack), 팀즈(Microsoft Teams), 잔디(Jandi) 또는 구글챗(Google Chat)**으로 전송하는 **Google Apps Script 기반 서버리스 뉴스봇**이다. 처음에는 RSS 데이터를 구글챗으로 넘기는 단순한 형태로 만들었지만, 올해 3월에 네이버 오픈 API 기반으로 코드를 재구축한 뒤 슬랙, 팀즈, 잔디 지원을 차례로 추가했다.
 
@@ -385,17 +383,13 @@ Google Apps Scripts는 이벤트에 따라 주어진 스크립트를 일회성�
 
 로그를 찾아보니 `PropertiesService`에서 가져와 정수로 변환 시킨 `timestamp`의 값이 `1`로 찍히고 있었다. 이상하다 싶어 해당 값을 변환 처리 없이 직접 가져와 보니 그 결과는 아래 이미지와 같았다.
 
-![](/content/images/2022/05/propertiesservice_log.png)
-
-*정수형 `timestamp` 대신 지수 형태의 `string`이 리턴되었다.*
+![정수형 timestamp 대신 지수 형태의 string이 리턴되었다.](/content/images/2022/05/propertiesservice_log.png)
 
 **JavaScript**와 **Google Apps Script**에서는 **[숫자를 `number` 타입으로 인식하여 메모리에 `IEEE-754` 규격을 따르는 부동소수점 포맷으로 저장](https://stackoverflow.com/questions/18719775/parsing-and-converting-exponential-values-to-decimal-in-javascript)**한다는 사실을 이번에 알게 됐다. 콘솔에서 볼 때엔 2진법을 거쳐 10진법으로 변환된 결과를 보게 되지만, 메모리 상에서는 그렇지 않았던 것이다. 이렇게 저장된 `timestamp`가 `PropertiesService` 클래스에 지수 표기법 형태의 `string` 타입으로 입력되고, 이것이 `parseInt()` 메서드를 거치면서 소수점 이하 값들이 버려진 채 위와 같은 결과가 나오게 된 것이다.
 
 이 문제는 `.parseInt()` 대신 `.parseFloat()`를 써서 해결했다. 이 메서드는 [지수(`e` 또는 `E`) 문자가 포함된 지수형 문자열을 실수로 바꿔주는 역할]([https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global%5C_Objects/parseFloat#description])도 한다. 이렇게 변환한 `timestamp` 값으로 원래 얻고자 했던 `Date` 객체를 다시 정상적으로 얻을 수 있었다.
 
-![](/content/images/2022/05/propertiesservice_fixed.png)
-
-*`parseFloat()`를 쓰니 `timestamp` 문제가 해결되었다.*
+![parseFloat()를 쓰니 timestamp 문제가 해결되었다.](/content/images/2022/05/propertiesservice_fixed.png)
 
 ### 3\. 네이버 측의 매체명 데이터 필드 미지원
 
@@ -403,9 +397,7 @@ Google Apps Scripts는 이벤트에 따라 주어진 스크립트를 일회성�
 
 매체명 판별에 필요한 데이터는 별도의 크롤링 작업을 통해 얻었다. 이 작업에는 정치, 경제, 국제, 문화, 스포츠, 지역_(서울, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주 등)_ 등 6개 카테고리에 걸쳐 **약 8만 건의 뉴스**를 가져와 **736개의 매체명과 도메인**을 뽑아내는 과정이 포함되었다. 이렇게 뽑아낸 데이터는 엑셀로 1차 전처리를 한 뒤, `["도메인", "매체명"]` 형태의 배열을 원소로 갖는 이중 배열 형태로 정리하여 `listSource()` 안에 넣었다. [그 결과물은 여기서 볼 수 있다.](https://github.com/seongjinme/naver-news-fetching-bot/blob/main/source.gs)
 
-![](/content/images/2022/05/listsource.png)
-
-*때로는 가장 단순한 방법이 필요할 때도 있다.*
+![때로는 가장 단순한 방법이 필요할 때도 있다.](/content/images/2022/05/listsource.png)
 
 매체명을 판별할 코드는 아래와 같이 작성했다. 예전에는 위의 데이터에 포함되지 못한 매체를 `(알수없음)`으로 표기했지만, 2022년 8월부터는 이런 경우엔 원문이 실린 `1차 도메인 주소`를 정규식으로 뽑아내어 대신 표기하도록 바꾸었다. 회사 업무에 뉴스봇을 사용 중이신 한 마케터님의 의견 덕분에 개선할 수 있었던 부분이다. 아이디어를 주신 그분께 이 자리를 빌어 감사드린다.
 
@@ -503,9 +495,7 @@ function checkSourceIndex(index, list, address, address_stripped) {
 
 이렇게 해서 알고리즘을 개선한 결과, 전체적인 탐색 시간 효율이 크게 향상된 것을 확인할 수 있었다. 연산 시간도 과금 기준 중 하나인 클라우드 환경에서는 이런 작은 변화가 큰 차이를 만들 수 있을 것이다.
 
-![](/content/images/2022/05/press_search_test.png)
-
-*매체명 탐색 알고리즘 개선 전후 비교 결과*
+![매체명 탐색 알고리즘 개선 전후 비교 결과](/content/images/2022/05/press_search_test.png)
 
 ## 맺음말
 

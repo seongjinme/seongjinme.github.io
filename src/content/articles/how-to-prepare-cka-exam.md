@@ -55,9 +55,9 @@ CKA 자격증 시험은 쿠버네티스 기술을 관리하는 [Linux Foundation
 
 실제 시험은 아래와 같은 UI 환경에서 진행된다. 이 내용은 2022년 8월, 쿠버네티스 v1.24 환경 기준으로 업데이트 된 내용임을 밝힌다.
 
-![](/content/images/2022/08/exam-ui-new-1.png)
+![새로 개편된 CKA 시험의 ExamUI 환경](/content/images/2022/08/exam-ui-new-1.png)
 
-*새로 개편된 CKA 시험의 ExamUI 환경 (출처: [Linux Foundation](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad#adjusting-font-and-windows-in-the-examui))*
+이미지 출처: [Linux Foundation](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad#adjusting-font-and-windows-in-the-examui)
 
 -   응시자는 PSI Bridge Secure Browser를 통해 리눅스 기반의 VM에 원격 접속하여 시험을 치른다. 원격 응시 가능한 시스템 사양은 [여기서](https://helpdesk.psionline.com/hc/en-gb/articles/4409608794260-PSI-Bridge-Platform-System-Requirements) 확인할 수 있다.
 -   PSI Bridge Secure Browser 상단의 `-`, `+` 버튼으로 VM 화면의 글자 크기를 조정 가능하다. 이밖에 [시험 화면 조정을 위한 방법](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad#adjusting-font-and-windows-in-the-examui)도 함께 숙지하면 좋다.
@@ -139,8 +139,6 @@ CKA 시험 후기를 찾아보면 반드시 언급되는 강의가 있다. 모�
 CKA 시험을 등록하면 [killer.sh](https://killer.sh/) 에서 문제 풀이 실습을 해볼 수 있는 무료 세션 2회분이 제공된다. 지금까지 배우고 연습한 것을 총정리한다는 마음으로 도전해보자.
 
 ![이름부터 살벌한 시뮬레이터, killer.sh 접속 화면](/content/images/2022/03/killer-sh.png)
-
-*이름부터 살벌한 시뮬레이터, killer.sh 접속 화면*
 
 많은 후기글에서 소개된 것처럼 **killer.sh의 난이도는 상당히 높다.** 그러나 대개는 하나의 문제 안에서 이것저것 해결해야 할 사항이 많거나, 일반적인 자격증 관련 강의에서 잘 다루지 않는 리소스 및 제약사항을 이용해야 하기에 까다로운 경우들에 속했다. 이를테면 `podAntiAffinity`를 이용하여 DaemonSet처럼 동작하는 Deployment를 구현하는 식이다. 실제로 경험해보니 시간만 충분하다면 쿠버네티스 공식 문서를 참고하며 풀어나갈 수 있는 문제들이었다.
 

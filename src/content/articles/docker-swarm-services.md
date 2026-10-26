@@ -31,8 +31,6 @@ featureImage: "/content/images/2022/08/cover-4.png"
 
 ![서비스와 태스크의 관계가 포함된 구성도 (출처 : 공식 문서)](/content/images/2022/08/service-task.png)
 
-*서비스와 태스크의 관계가 포함된 구성도 (출처 : 공식 문서)*
-
 위의 예시는 `nginx:latest` 이미지를 탑재한 3개의 레플리카로 정의된 Nginx 서비스와 태스크의 구성도를 나타낸 것이다. 이렇게 정의된 서비스의 명세를 스웜 매니저(Swarm Manager)가 파악한 뒤, 가용한 노드에 지정된 레플리카 수 만큼의 태스크를 만들어 할당한다. 각 태스크는 `nginx:latest` 이미지 기반의 컨테이너를 1개씩 포함하여 동작한다.
 
 ## 서비스 생성 기초
@@ -141,8 +139,6 @@ docker services logs <옵션> <서비스명_또는_ID값|태스크_ID값>
 
 ![HAProxy를 외부 로드밸런서로 사용하는 Ingress 네트워크 구성도 (출처 : 공식 문서)](/content/images/2022/08/ingress-network.png)
 
-*HAProxy를 외부 로드밸런서로 사용하는 Ingress 네트워크 구성도 (출처 : 공식 문서)*
-
 ### 서비스 삭제하기
 
 `docker service rm` 명령으로 현재 구동 중인 서비스를 삭제할 수 있다. 서비스가 삭제되면 서비스에 포함된 모든 태스크(컨테이너)가 노드에서 함께 제거된다. 단, 서비스에 도커 볼륨(Docker Volume)을 마운트하여 사용하고 있었다면, 해당 볼륨은 별도로 삭제하지 않는 한 클러스터에 남아있게 된다.
@@ -178,8 +174,6 @@ w1v8rn73q95w   nginx     replicated   3/3                    nginx:latest   *:80
 -   `global` : 모든 각 노드에 하나씩의 태스크가 할당되도록 강제하는 유형이다. 쿠버네티스의 데몬셋(DaemonSet)과 같은 형태다.
 
 ![Replicated, Global 서비스 유형 비교 (출처 : 공식 문서)](/content/images/2022/08/service-modes.png)
-
-*Replicated, Global 서비스 유형 비교 (출처 : 공식 문서)*
 
 `global` 유형은 각 노드의 상태를 모니터링하는 로그 수집기 등을 배치할 때 유용하다. 이 유형의 서비스를 생성하려면 `docker service create` 명령에 `--mode` 플래그를 추가한다. 단, 이미 구동 중인 서비스의 유형을 바꿀 수는 없다.
 

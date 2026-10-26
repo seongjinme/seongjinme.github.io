@@ -12,8 +12,6 @@ featureImage: "/content/images/2023/02/cover.png"
 
 ![PDF 보고서를 실시간으로 요약해낸 MS Edge Copilot 시연 화면 (출처 : Bing 공식 유튜브)](/content/images/2023/02/ms-edge-copilot.jpg)
 
-*PDF 보고서를 실시간으로 요약해낸 MS Edge Copilot 시연 화면 (출처 : Bing 공식 유튜브)*
-
 대화형 인공지능은 우리가 정보를 다루는 방식에 큰 변화를 가져올 것이다. 그동안의 정보 활용 기술은 내게 필요한 '정보'를 신속하게 획득 가능한 검색 능력에 주로 의존해 왔다. 앞으로는 인공지능과 상호작용하여 필요한 '답'을 원하는 양식대로 빠르게 얻어내는 능력이 중요해질 것이다. 그렇다면, 이제는 **대화형 인공지능에 대한 가벼운 인상비평을 넘어 이것을 잘 활용할 수 있는 기술에 대한 이야기가 필요할 때**라고 본다.
 
 이번 글에서는 인공지능이 생성해 주는 결과물의 품질을 높일 수 있는 **프롬프트 엔지니어링(Prompt Engineering)**을 간략히 다룬다. 우선 프롬프트(Prompt)의 개념과 이것의 올바른 엔지니어링 필요성을 정리한 뒤, ChatGPT를 통해 시험해 본 엔지니어링 사례를 소개한다. 아울러 그 과정에서 얻은 프롬프트의 작성 요령도 함께 안내할 것이다.
@@ -23,8 +21,6 @@ featureImage: "/content/images/2023/02/cover.png"
 생성 인공지능(Generative AI) 분야에서 **프롬프트(Prompt)**는 **거대 언어 모델(Large Language Model; LLM)로부터 응답을 생성하기 위한 입력값**을 의미한다.
 
 ![프롬프트와 거대 언어 모델, 그리고 생성 결과물의 관계도 (이미지 출처 : co:here)](/content/images/2023/02/prompt-to-generate.jpg)
-
-*프롬프트와 거대 언어 모델, 그리고 생성 결과물의 관계도 (이미지 출처 : co:here)*
 
 여기서 **거대 언어 모델**이란, **방대한 규모의 데이터셋을 바탕으로 특정한 텍스트/이미지/영상을 인식하고, 변환하며, 가공 또는 생성해내는 데에 쓰이는 딥러닝 알고리즘의 일종**이다. 위에서 소개한 ChatGPT는 이러한 거대 언어 모델 중 하나인 GPT-3.5를 채팅의 형식으로 사용할 수 있도록 만든 대화형 인공지능 서비스인 셈이다.
 
@@ -47,11 +43,7 @@ GPT와 같은 거대 언어 모델에서는 프롬프트에 포함된 문구들�
 
 !["Tell me who invented the email." 입력 결과](/content/images/2023/02/chatgpt-email-01.png)
 
-*"Tell me who invented the email." 입력 결과*
-
 !["Tell me about the person invented the email." 입력 결과](/content/images/2023/02/chatgpt-email-02.png)
-
-*"Tell me about the person invented the email." 입력 결과*
 
 `who`를 `about the person`으로 바꿨을 뿐인데 결과물의 양과 질이 판이하다. 약간의 표현 차이 만으로도 짧고 간결한 답이 풍부한 맥락으로 구성된 에세이 수준의 결과물로 바뀌었다. 이처럼 **내게 필요한 더 높은 품질의 응답을 얻으려면 해당 언어 모델이 잘 이해할 수 있는, 정제된 언어로 구조화된 프롬프트를 구성**하는 것이 중요하다.
 
@@ -64,8 +56,6 @@ GPT와 같은 거대 언어 모델에서는 프롬프트에 포함된 문구들�
 ChatGPT에게 **"영화 퀴즈를 하나 만들어줘"**라는 작업을 시켜보기로 하자. 일단 `Create a movie quiz.`라는 문장을 입력했다.
 
 !["Create a movie quiz." 입력 결과](/content/images/2023/02/chatgpt-prompt-engineering-01.png)
-
-*"Create a movie quiz." 입력 결과*
 
 그런대로 일을 해낸 것 같아 보인다. 하지만 결과물의 품질 측면에서 보면 개선 가능한 부분들이 있다. 내가 떠올린 개선점들은 다음과 같다.
 
@@ -94,8 +84,6 @@ Create one quiz with 4 options. Follow the instructions below.
 
 ![첫 번째로 개선된 프롬프트의 입력 결과물](/content/images/2023/02/chatgpt-prompt-engineering-02.png)
 
-*첫 번째로 개선된 프롬프트의 입력 결과물*
-
 다만 아쉬운 점도 있다. ChatGPT에서는 같은 세션(채팅방) 안에서 같은 프롬프트 입력을 반복할 수록 처음 내놓은 답과 유사한 유형의 응답이 반복적으로 나오곤 했다. 영화 퀴즈를 생성할 때에도 처음 생성한 문제와 동일한 영화 및 주제로 엇비슷한 퀴즈를 계속해서 내놓는 경향이 있었다. 아마도 제한된 학습 데이터와 이로 인한 편향 때문일 것으로 짐작된다.
 
 그래서 새로운 세션을 만든 뒤, 아래와 같이 프롬프트를 수정했다.
@@ -113,8 +101,6 @@ Create one quiz with 4 options. Follow the instructions below.
 ```
 
 ![두 번째로 개선된 프롬프트의 입력 결과물](/content/images/2023/02/chatgpt-prompt-engineering-03.png)
-
-*두 번째로 개선된 프롬프트의 입력 결과물*
 
 이번에는 **문제가 다루는 주제의 범위**를 미리 정해두고, **같은 영화나 주제를 계속 반복하지 않도록 제약하는 조건**을 추가했다. 그러자 이전보다 더욱 다채로운 소재로 퀴즈가 생성되기 시작했다. 매번 프롬프트를 입력할 때마다 다른 유형의 문제가 만들어지니 재미 요소가 늘어났다.
 
@@ -137,8 +123,6 @@ Create one quiz with 4 options. Follow the instructions below.
 프롬프트에 두 가지 항목을 추가했다. **출력 양식**을 일정하게 정했고, 마지막 줄에는 `"More Info"` 이름으로 관련 정보를 확인할 수 있는 **IMDB 링크**를 함께 알려주도록 만들었다. 가끔 ChatGPT가 임의로 영화 제목을 출력하면서 퀴즈 정답을 노출하는 경우를 대비하여 이에 대응하는 문구도 더했다.
 
 ![세 번째로 개선된 프롬프트의 입력 결과물](/content/images/2023/02/chatgpt-prompt-engineering-04.png)
-
-*세 번째로 개선된 프롬프트의 입력 결과물*
 
 의도한 대로 퀴즈 정답 아래에 설명(Explanation) 문구가 추가되었으며, 관련 정보를 직접 찾아볼 수 있는 IMDB 링크도 자동으로 생성되었다. 이처럼 **프롬프트에 디테일이 더해질 수록 결과물도 더욱 정교하게, 정제된 형태로 돌아온다**는 것을 알 수 있다.
 

@@ -32,9 +32,9 @@ featureImage: "/content/images/2022/02/cover-10.png"
 
 **ClusterIP**는 **파드들이 클러스터 내부의 다른 리소스들과 통신**할 수 있도록 해주는 가상의 클러스터 전용 IP다. 이 유형의 서비스는 `<ClusterIP>`로 들어온 클러스터 내부 트래픽을 해당 파드의 `<파드IP>:<targetPort>`로 넘겨주도록 동작하므로, **오직 클러스터 내부에서만 접근 가능**하게 된다. 쿠버네티스가 지원하는 기본적인 형태의 서비스다.
 
-![ClusterIP 유형의 서비스 구조 (이미지 출처 : Google Cloud) https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0](/content/images/2022/02/clusterip.png)
+![ClusterIP 유형의 서비스 구조](/content/images/2022/02/clusterip.png)
 
-*ClusterIP 유형의 서비스 구조 (이미지 출처 : [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0))*
+이미지 출처: [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 
 #### Selector를 포함하는 형태
 
@@ -117,9 +117,9 @@ subsets:					# 해당 서비스로 가리킬 endpoint를 명시
 
 **NodePort**는 **외부에서 노드 IP의 특정 포트(`<NodeIP>:<NodePort>`)로 들어오는 요청을 감지하여, 해당 포트와 연결된 파드로 트래픽을 전달**하는 유형의 서비스다. 이때 클러스터 내부로 들어온 트래픽을 특정 파드로 연결하기 위한 **ClusterIP** 역시 자동으로 생성된다.
 
-![NodePort 유형의 서비스 구조 (이미지 출처 : Google Cloud) https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0](/content/images/2022/02/nodeport.png)
+![NodePort 유형의 서비스 구조](/content/images/2022/02/nodeport.png)
 
-*NodePort 유형의 서비스 구조 (이미지 출처 : [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0))*
+이미지 출처: [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 
 이 유형의 서비스에서는 `spec.ports` 아래에 `nodePort`를 추가로 지정할 수 있다. `nodePort`는 외부에서 노드 안의 특정 서비스로 접근할 수 있도록 지정된 노드의 특정 포트를 의미한다. `nodePort`로 할당 가능한 포트 번호의 범위는 `30000`에서 `32767` 사이이며, 미지정시 해당 범위 안에서 임의로 부여된다.
 
@@ -145,9 +145,9 @@ spec:
 
 별도의 외부 로드 밸런서를 제공하는 클라우드_(AWS, Azure, GCP 등)_ 환경을 고려하여, 해당 로드 밸런서를 클러스터의 서비스로 프로비저닝할 수 있는 **LoadBalancer** 유형도 제공된다.
 
-![LoadBalancer 유형의 서비스 구조 (이미지 출처 : Google Cloud) https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0](/content/images/2022/02/loadbalancer.png)
+![LoadBalancer 유형의 서비스 구조](/content/images/2022/02/loadbalancer.png)
 
-*LoadBalancer 유형의 서비스 구조 (이미지 출처 : [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0))*
+이미지 출처: [Google Cloud](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 
 이 유형은 **서비스를 클라우드 제공자 측의 자체 로드 밸런서로 노출**시키며, 이에 필요한 **NodePort**와 **ClusterIP** 역시 자동 생성된다. 이때 프로비저닝된 로드 밸런서의 정보는 서비스의 `status.loadBalancer` 필드에 게재된다.
 

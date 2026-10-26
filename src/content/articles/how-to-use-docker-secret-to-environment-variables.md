@@ -322,8 +322,6 @@ docker build --tag seongjinme/ghost:5 .
 
 ![정상적으로 완료된 Ghost 확장 이미지 빌드 과정](/content/images/2022/11/extension-image-build.png)
 
-*정상적으로 완료된 Ghost 확장 이미지 빌드 과정*
-
 ## 배포하기
 
 ### 도커 스택(Docker Stack) 간단 소개
@@ -429,8 +427,6 @@ yqwnge1sld54    \_ ghost_ghost.1   seongjinme/ghost:5   docker-desktop   Shutdow
 이제 마지막으로 배포 완료된 Ghost 블로그에 접속해보자. 갓 생성된 블로그 첫 화면이 반갑게 맞아줄 것이다.
 
 ![도커 시크릿이 환경변수로 적용된 Ghost 블로그 첫 화면](/content/images/2022/11/ghost-welcome-screen.png)
-
-*도커 시크릿이 환경변수로 적용된 Ghost 블로그 첫 화면*
 
 ## 맺음말
 

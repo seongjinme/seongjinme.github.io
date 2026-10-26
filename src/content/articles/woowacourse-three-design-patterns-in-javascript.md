@@ -10,8 +10,6 @@ featureImage: "/content/images/2023/11/cover-1.png"
 
 ![짧은 수명이 정해진 커뮤니티지만, 그럼에도 정말 많은 분들께서 참여해주셨다.](/content/images/2023/11/woowacourse-community.png)
 
-*짧은 수명이 정해진 커뮤니티지만, 그럼에도 정말 많은 분들께서 참여해주셨다.*
-
 이번 글에서는 [우아한테크코스 6기 프리코스의 마지막 과제로 공개된 "크리스마스 프로모션" 미션](https://github.com/woowacourse-precourse/javascript-christmas-6)을 소재로, 과제 수행 과정에서 활용한 세 가지 디자인 패턴을 소개하고 이에 대한 예시 코드를 자바스크립트 언어로 함께 살펴보려고 한다. 여기서 살펴볼 디자인 패턴은 다음과 같다.
 
 1.  [싱글턴 패턴 (Singleton Pattern)](/woowacourse-three-design-patterns-in-javascript/#%EC%8B%B1%EA%B8%80%ED%84%B4-%ED%8C%A8%ED%84%B4-singleton-pattern)
@@ -135,13 +133,9 @@ class Menu {
 
 ![책임 연쇄 패턴의 작동 구조](/content/images/2023/11/chain-of-responsibility-figure-1.jpg)
 
-*책임 연쇄 패턴의 작동 구조*
-
 이러한 작동 구조를 좀 더 알기 쉽게 풀어보면 아래 그림과 같다. 핸들러와 구체 핸들러들이 각각 후속 처리자(successor) 정보를 통해 단방향으로 연결된 유사 연결 리스트의 구조를 가지고 있음을 알 수 있다.
 
 ![책임 연쇄 패턴에서 나타나는 각 핸들러들의 연결 구조](/content/images/2023/11/chain-of-responsibility-figure-2.jpg)
-
-*책임 연쇄 패턴에서 나타나는 각 핸들러들의 연결 구조*
 
 그러나 이번 미션 해결에 필요한 혜택 체인의 구조는 완전한 단방향 선형이다. 따라서 모든 핸들러에 후속 처리자 정보를 포함시킬 필요가 없다. 내 경우에는 **메인 핸들러에 혜택 클래스의 배열을 생성하고, 이를 순회하면서 주문 내역에 적용할 수 있는 혜택을 찾아 하나씩 추가**하는 방식으로 간단히 구현했다. 아래는 내가 작성한 메인 핸들러(`BenefitHandler`)의 예시 코드다.
 

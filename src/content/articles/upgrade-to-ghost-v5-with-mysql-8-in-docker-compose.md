@@ -11,9 +11,9 @@ featureImage: "/content/images/2022/07/cover.png"
 
 [(업그레이드 단계별 절차로 바로가기 ↓)](#%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C-%EB%8B%A8%EA%B3%84%EB%B3%84-%EC%A0%88%EC%B0%A8)
 
-![(이미지 출처 : Ghost 공식 웹사이트)](/content/images/2022/07/ghost-v5.png)
+![Ghost 5 소개 이미지](/content/images/2022/07/ghost-v5.png)
 
-*(이미지 출처 : [Ghost 공식 웹사이트](https://ghost.org/changelog/5/))*
+이미지 출처: [Ghost 공식 웹사이트](https://ghost.org/changelog/5/)
 
 ## Ghost 5는 MySQL 8 전용
 
@@ -55,8 +55,6 @@ Ghost에서 게시글을 백업 받는 방법은 간단하다. 관리자 화면(
 
 ![Ghost 블로그 관리자 페이지의 Settings > Labs 화면](/content/images/2022/07/step1_export.png)
 
-*Ghost 블로그 관리자 페이지의 Settings > Labs 화면*
-
 여기서 `Export your content`의 `Export` 버튼을 누르면, 블로그의 모든 게시글과 계정 정보, 그리고 설정값들이 JSON 포맷으로 다운로드 된다. 여기에는 `Settings -> Code injection`을 통해 삽입한 코드들도 모두 포함된다.
 
 ### 2\. 기존 블로그 데이터 백업 받기
@@ -67,9 +65,7 @@ Ghost에서 게시글을 백업 받는 방법은 간단하다. 관리자 화면(
 
 인스턴스 안에서 설정된 도커 볼륨들의 실제 디렉터리 경로는 인스턴스의 `/var/lib/docker/volumes` 에서 위치해 있다. `sudo docker volume inspect <볼륨명>` 명령을 사용하면 `Mountpoint` 항목에서 정확한 경로를 확인할 수 있다. 해당 경로에 접근하려면 `root` 권한이 필요하다.
 
-![](/content/images/2022/07/step2_inspect_volume-1.png)
-
-*볼륨 정보 식별 명령을 실행한 결과 화면*
+![볼륨 정보 식별 명령을 실행한 결과 화면](/content/images/2022/07/step2_inspect_volume-1.png)
 
 여기서는 백업 데이터를 원격으로 내려받기 위해 `scp`(secure copy protocol)를 이용했다. 다만 `root` 권한이 필요한 경로를 원격에서 접근할 수는 없으므로, 우선 해당 볼륨의 데이터를 압축하여 원격 접근 가능한 경로로 옮긴 뒤 내려받는 과정을 거쳤다.
 
@@ -82,9 +78,7 @@ $ tar cvfz backup-blog_ghost-data.tar.gz /var/lib/docker/volumes/blog_ghost-data
 $ scp -i <keyfile> <계정명@인스턴스주소>:~/backup-blog_ghost-data.tar.gz ~/backup/backup-blog_ghost-data.tar.gz
 ```
 
-![`scp`를 이용한 백업 파일 다운로드 화면](/content/images/2022/07/step2_scp.png)
-
-*scp를 이용한 백업 파일 다운로드 화면*
+![scp를 이용한 백업 파일 다운로드 화면](/content/images/2022/07/step2_scp.png)
 
 #### YAML에서 지정한 볼륨명 앞에 Prefix가 붙는 경우
 
@@ -343,9 +337,7 @@ nginx-proxy-acme   /bin/bash /app/entrypoint. ...   Up
 
 관리자 화면(`블로그주소/ghost`)에 접속해서 기존의 관리자 아이디와 비밀번호로 재가입한 뒤, 앞서 1번 단계와 동일한 방법으로 `Settings`의 `Labs`로 이동한다. `Labs` 화면 상단에 있는 `Migration Options` 섹션의 `Import content`에서 `Import` 버튼을 눌러 기존에 백업받아 두었던 게시글 데이터(`JSON`)를 업로드한다.
 
-![백업 데이터 복원 후 에러 메시지 화면](/content/images/2022/07/step5_error.png)
-
-*백업 데이터 복원 후 나타난 에러 메시지 화면*
+![백업 데이터 복원 후 나타난 에러 메시지 화면](/content/images/2022/07/step5_error.png)
 
 업로드가 끝나면 위의 스크린샷과 같이 몇 가지 경고메시지가 뜬다. 그러나 살펴보면, 중복된 사용자 정보와 테마 설정 정보가 Import 되지 않았다는 내용이 전부다. 만약 기존에 운영해왔던 Ghost 컨테이너의 `/var/lib/ghost/content` 경로를 도커 볼륨으로 잘 설정해 두었었다면, 그동안 올려둔 테마나 사진 등의 데이터는 도커 볼륨에 안전히 저장되어 있을 것이므로 안심해도 된다.
 

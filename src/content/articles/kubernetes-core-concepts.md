@@ -30,8 +30,6 @@ featureImage: "/content/images/2022/02/cover-5.png"
 
 ![각기 다른 요소들을 동시에 안정적으로 제어하는 것이 오케스트레이션의 핵심 역할이다.](/content/images/2022/02/orchestration.jpg)
 
-*각기 다른 요소들을 동시에 안정적으로 제어하는 것이 오케스트레이션의 핵심 역할이다.*
-
 위의 4가지 이슈를 해결하기 위해 나타난 개념이 바로 **컨테이너 오케스트레이션(Container Orchestration)**이다. 관현악 연주에서 각기 다른 파트를 맡은 연주자들이 하나의 연주를 위해 동시에 조화를 이루듯이, 온라인 인프라 환경에서 대규모의 컨테이너들이 안정적으로 운영될 수 있도록 관리의 복잡성을 줄여주고 이를 자동화하는 것이다. 쿠버네티스는 이러한 컨테이너 오케스트레이션 개념을 구현한 도구들 중 하나다.
 
 ## 쿠버네티스의 핵심 설계 사상 5가지
@@ -44,41 +42,39 @@ featureImage: "/content/images/2022/02/cover-5.png"
 
 쿠버네티스는 원하는 상태(Desired state)와 현재의 상태(Current state)가 상호 일치하는지를 지속적으로 체크하고 업데이트한다. 따라서 내게 필요한 요소에 대해 원하는 상태를 설정하는 것만으로도 호스트의 리소스 현황에 맞춰 최적의 배치로 배포되거나 변경된다. 만약 특정 요소에 문제가 생겼을 경우, 쿠버네티스는 해당 요소가 원하는 상태로 다시 복구될 수 있도록 필요한 조치를 자동으로 취한다.
 
-![쿠버네티스는 원하는 상태가 현재의 상태로 될 수 있도록 계속해서 모니터링하고 관리한다. (이미지 출처 : <a href="https://www.leverege.com/iot-ebook/kubernetes-object-management-model">Leverage</a>)](/content/images/2022/02/declarative.jpg)
+![쿠버네티스는 원하는 상태가 현재의 상태로 될 수 있도록 계속해서 모니터링하고 관리한다.](/content/images/2022/02/declarative.jpg)
 
-*쿠버네티스는 원하는 상태가 현재의 상태로 될 수 있도록 계속해서 모니터링하고 관리한다. (이미지 출처 : [Leverage](https://www.leverege.com/iot-ebook/kubernetes-object-management-model))*
+이미지 출처: [Leverage](https://www.leverege.com/iot-ebook/kubernetes-object-management-model)
 
 ### 2\. 기능 단위의 분산
 
 쿠버네티스에서는 각각의 기능들이 개별적인 구성 요소로서 독립적으로 분산되어 있다. 실제로 노드(Node), 레플리카셋(ReplicaSet), 디플로이먼트(Deployment), 네임스페이스(Namespace) 등 클러스터를 구성하는 주요 요소들이 모두 컨트롤러(Controller)로서 구성되어 있으며, 이들은 [Kube Controller Manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/) 안에 패키징 되어 있다.
 
-![(이미지 출처: https://iximiuz.com/en/posts/kubernetes-operator-pattern/)](/content/images/2022/02/kube-controller.png)
+![쿠버네티스는 내부 요소들의 상태 관리를 위해 컨트롤러를 이용한다.](/content/images/2022/02/kube-controller.png)
 
-*쿠버네티스는 내부 요소들의 상태 관리를 위해 컨트롤러를 이용한다. (이미지 출처: [iximiuz.com](https://iximiuz.com/en/posts/kubernetes-operator-pattern/))*
+이미지 출처: [iximiuz.com](https://iximiuz.com/en/posts/kubernetes-operator-pattern/)
 
 ### 3\. 클러스터 단위 중앙 제어
 
 쿠버네티스에서는 전체 물리 리소스를 클러스터 단위로 추상화하여 관리한다. 클러스터 내부에는 클러스터의 구성 요소들에 대해 제어 권한을 가진 컨트롤 플레인(Control Plane) 역할의 마스터 노드(Master Node)를 두게 되며, 관리자는 이 마스터 노드를 이용하여 클러스터 전체를 제어한다.
 
-![쿠버네티스는 클러스터 단위로 중앙 제어되는 구조를 가진다.<br>(이미지 출처: Kubernetes Documentation)](/content/images/2022/02/cluster.png)
-
-*쿠버네티스는 클러스터 단위로 중앙 제어되는 구조를 가진다. (이미지 출처: Kubernetes Documentation)*
+![쿠버네티스는 클러스터 단위로 중앙 제어되는 구조를 가진다. (이미지 출처: Kubernetes Documentation)](/content/images/2022/02/cluster.png)
 
 ### 4\. 동적 그룹화
 
 쿠버네티스의 구성 요소들에는 쿼리 가능한 레이블(Label)과 메타데이터용 어노테이션(Annotation)에 임의로 키-값 쌍을 삽입할 수 있다. 관리자는 `selector`를 이용해서 레이블 기준으로 구성 요소들을 유연하게 관리할 수 있고, 어노테이션에 기재된 내용을 참고하여 해당 요소의 특징적인 내역을 추적할 수 있다.
 
-![레이블(Label)을 이용하면 구성 요소를 유연하게 그룹화할 수 있다.<br>(이미지 출처 : <a href="https://k21academy.com/docker-kubernetes/labels-and-annotations-in-kubernetes/"K21Academy</a>)](/content/images/2022/02/labels.png)
+![레이블(Label)을 이용하면 구성 요소를 유연하게 그룹화할 수 있다.](/content/images/2022/02/labels.png)
 
-*레이블(Label)을 이용하면 구성 요소를 유연하게 그룹화할 수 있다.(이미지 출처 : [K21Academy](https://k21academy.com/docker-kubernetes/labels-and-annotations-in-kubernetes/))*
+이미지 출처: [K21Academy](https://k21academy.com/docker-kubernetes/labels-and-annotations-in-kubernetes/)
 
 ### 5\. API 기반 상호작용
 
 쿠버네티스의 구성 요소들은 오직 Kubernetes API server(`kube-apiserver`)를 통해서만 상호 접근이 가능한 구조를 가진다. 마스터 노드에서 `kubectl`을 거쳐 실행되는 모든 명령은 이 API 서버를 거쳐 수행되며, 컨트롤 플레인(Control Plane)에 포함된 클러스터 제어 요소나 워커 노드(Worker Node)에 포함된 `kubelet`, 프록시 역시 API 서버를 항상 바라보게 되어 있다.
 
-![쿠버네티스의 많은 핵심 요소들이 API 서버를 바라보는 구조로 되어있다.<br>(이미지 출처: <a href="https://sysdig.com/blog/monitor-kubernetes-api-server/">Sysdig</a>)](/content/images/2022/02/apiserver.png)
+![쿠버네티스의 많은 핵심 요소들이 API 서버를 바라보는 구조로 되어있다.](/content/images/2022/02/apiserver.png)
 
-*쿠버네티스의 많은 핵심 요소들이 API 서버를 바라보는 구조로 되어있다. (이미지 출처: [Sysdig](https://sysdig.com/blog/monitor-kubernetes-api-server/))*
+이미지 출처: [Sysdig](https://sysdig.com/blog/monitor-kubernetes-api-server/)
 
 ## 마무리
 

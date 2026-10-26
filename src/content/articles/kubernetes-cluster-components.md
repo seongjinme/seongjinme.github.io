@@ -17,8 +17,6 @@ featureImage: "/content/images/2022/02/cover-6.png"
 
 ![쿠버네티스 클러스터는 컨테이너선과 통제함으로 이루어진 선단의 개념에 비유할 수 있다.](/content/images/2022/02/container-ships.jpg)
 
-*쿠버네티스 클러스터는 컨테이너선과 통제함으로 이루어진 선단의 개념에 비유할 수 있다.*
-
 쿠버네티스 클러스터는 용도에 따라 크게 **워커 노드(Worker Node)**와 **마스터 노드(Master Node)**로 구분된다. 이를 위의 선단 개념에 비유하여 풀이하면 다음과 같다.
 
 -   **워커 노드(Worker Node)** : 각기 다른 컨테이너들이 선적된 컨테이너선의 역할이다. 각기 다른 목적과 기능으로 세분화된 컨테이너들이 실제 배치되는 노드를 의미한다.
@@ -28,9 +26,9 @@ featureImage: "/content/images/2022/02/cover-6.png"
 
 [지난 글에서 소개한 것과 같이](/kubernetes-core-concepts/#5-api-%EA%B8%B0%EB%B0%98-%EC%83%81%ED%98%B8%EC%9E%91%EC%9A%A9), 쿠버네티스에서 클러스터의 모든 구성 요소들은 오직 API 서버를 통해서만 상호 접근이 가능하도록 설계되어 있다. 이 점을 유념하여 쿠버네티스 클러스터의 내부 구조를 좀 더 상세하게 살펴보자.
 
-![쿠버네티스 클러스터 구성도 (이미지 출처: Sysdig https://sysdig.com/blog/monitor-kubernetes-api-server/)](/content/images/2022/02/k8s-cluster.png)
+![쿠버네티스 클러스터 구성도](/content/images/2022/02/k8s-cluster.png)
 
-*쿠버네티스 클러스터 구성도 (이미지 출처: [Sysdig](https://sysdig.com/blog/monitor-kubernetes-api-server/))*
+이미지 출처: [Sysdig](https://sysdig.com/blog/monitor-kubernetes-api-server/)
 
 위의 구성도에서 **"Kubernetes Master"**는 **마스터 노드(Master Node)**에 포함된 **컨트롤 플레인(Control Plane)**에 해당한다. **컨트롤 플레인**은 클러스터 전체의 워크로드 리소스 등 주요 구성 요소들을 배포하고 제어하는 역할을 한다. 여기에 포함된 것들을 간단히 소개하면 다음과 같다.
 

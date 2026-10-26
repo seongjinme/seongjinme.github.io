@@ -80,8 +80,6 @@ https://www.imdb.com/title/tt1375666/
 
 ![KinoQuizAI 앱의 DB 테이블 구조](/content/images/2023/06/project-erd.png)
 
-*KinoQuizAI 앱의 DB 테이블 구조*
-
 위 내용을 참고하여 스키마(`quiz_data_schema`)를 아래와 같이 작성했다.
 
 ```json
@@ -265,8 +263,6 @@ Instruction Prompting, Few-shots 등의 프롬프트 엔지니어링 기법 없�
 지난 글에서 소개한 KinoQuizAI 앱을 예시로 하여, Function Calling 도입 전후의 프롬프트 입력량을 비교해보았다. 결과는 아래 이미지와 같다. 극적인 차이를 실감할 수 있을 것이다.
 
 ![Function Calling 도입 전 프롬프트(좌)와 도입 후 프롬프트(우)](/content/images/2023/06/prompts-before-after.jpg)
-
-*Function Calling 도입 전 프롬프트(좌)와 도입 후 프롬프트(우)*
 
 ### 할루시네이션에 의한 JSON 응답의 불안정성 존재
 
