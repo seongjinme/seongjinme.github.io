@@ -1,5 +1,7 @@
 ---
+import { articleUrl } from '@/utils/articles';
 import { formatDate } from '@/utils/format-date';
+import { ui } from '@/i18n/ui';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -12,11 +14,13 @@ const { articles } = Astro.props;
 <ul class="article-list">
   {articles.map((article) => (
     <li class="article-item">
-      <a class="article-item-container" href={`/${article.id}/`}>
+      <a class="article-item-container" href={articleUrl(article)}>
         <div class="article-content">
           <h3 class="article-title">{article.data.title}</h3>
           <span class="article-description">{article.data.description}</span>
-          <span class="article-meta">{formatDate(article.data.pubDate)}</span>
+          <span class="article-meta">
+            {formatDate(article.data.pubDate, ui[article.data.lang].dateLocale)}
+          </span>
         </div>
       </a>
     </li>

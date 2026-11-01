@@ -1,0 +1,31 @@
+---
+import { localeUrl, ui, type Locale, type Alternates } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+
+const { locale, alternates } = Astro.props;
+const languages = [
+  { code: 'ko' as const, label: '한국어', home: '한국어 홈' },
+  { code: 'en' as const, label: 'English', home: 'English home' },
+];
+---
+
+<nav class="language-switcher" aria-label={ui[locale].languageLabel}>
+  {languages.map(({ code, label, home }, index) => (
+    <>
+      {index > 0 && <span aria-hidden="true">|</span>}
+      {code === locale ? (
+        <span class="current-language" aria-current="true" lang={code}>
+          {label}
+        </span>
+      ) : (
+        <a href={alternates[code] ?? localeUrl(code)} lang={code} hreflang={code}>
+          {alternates[code] ? label : home}
+        </a>
+      )}
+    </>
+  ))}
+</nav>

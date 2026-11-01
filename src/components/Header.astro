@@ -1,8 +1,18 @@
 ---
+import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
+import { localeUrl, type Locale, type Alternates } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  alternates: Alternates;
+}
+
+const { locale, alternates } = Astro.props;
 ---
 
-<header>
+<header class="site-header">
   <h1 class="site-title">
-    <a href="/">Seongjin Hong</a>
+    <a href={localeUrl(locale)}>Seongjin Hong</a>
   </h1>
+  <LanguageSwitcher locale={locale} alternates={alternates} />
 </header>

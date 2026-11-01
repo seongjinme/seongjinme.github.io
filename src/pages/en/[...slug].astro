@@ -1,0 +1,15 @@
+---
+import ArticlePage from '@/components/ArticlePage.astro';
+import { getArticlePaths } from '@/utils/articles';
+import type { CollectionEntry } from 'astro:content';
+import type { Alternates } from '@/i18n/ui';
+export async function getStaticPaths() {
+  return getArticlePaths('en');
+}
+interface Props {
+  article: CollectionEntry<'articles'>;
+  alternates: Alternates;
+}
+---
+
+<ArticlePage {...Astro.props} />

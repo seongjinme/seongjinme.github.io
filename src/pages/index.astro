@@ -1,23 +1,5 @@
 ---
-import Base from '@/layouts/Base.astro';
-import ArticleList from '@/components/ArticleList.astro';
-import Profile from '@/components/Profile.astro';
-
-import { getCollection } from 'astro:content';
-
-const articles = (await getCollection('articles')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import ArticleIndex from '@/components/ArticleIndex.astro';
 ---
 
-<Base>
-  <Profile />
-
-  <section>
-    <h2>Articles</h2>
-    <ArticleList articles={articles.slice(0, 5)} />
-    <a class="all-articles-link" href="/articles/">
-      View all {articles.length} articles →
-    </a>
-  </section>
-</Base>
+<ArticleIndex locale="ko" home />

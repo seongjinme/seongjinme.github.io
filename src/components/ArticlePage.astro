@@ -1,0 +1,31 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import { formatDate } from '@/utils/format-date';
+import { ui, type Alternates } from '@/i18n/ui';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  alternates: Alternates;
+}
+
+const { article, alternates } = Astro.props;
+const locale = article.data.lang;
+const { Content } = await render(article);
+---
+
+<Base
+  locale={locale}
+  alternates={alternates}
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  ogImage={article.data.featureImage}
+>
+  <article>
+    <h1>{article.data.title}</h1>
+    <p class="article-meta">{formatDate(article.data.pubDate, ui[locale].dateLocale)}</p>
+    <hr />
+    <Content />
+  </article>
+</Base>

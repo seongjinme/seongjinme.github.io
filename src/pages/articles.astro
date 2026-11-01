@@ -1,15 +1,5 @@
 ---
-import Base from '@/layouts/Base.astro';
-import ArticleList from '@/components/ArticleList.astro';
-
-import { getCollection } from 'astro:content';
-
-const articles = (await getCollection('articles')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import ArticleIndex from '@/components/ArticleIndex.astro';
 ---
 
-<Base>
-  <h2>Articles</h2>
-  <ArticleList articles={articles} />
-</Base>
+<ArticleIndex locale="ko" />

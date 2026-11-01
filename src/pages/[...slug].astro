@@ -1,35 +1,15 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-
-import Base from '@/layouts/Base.astro';
-import { formatDate } from '@/utils/format-date';
-
+import ArticlePage from '@/components/ArticlePage.astro';
+import { getArticlePaths } from '@/utils/articles';
+import type { CollectionEntry } from 'astro:content';
+import type { Alternates } from '@/i18n/ui';
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
-  return articles.map((article) => ({
-    params: { slug: article.id },
-    props: { article },
-  }));
+  return getArticlePaths('ko');
 }
-
 interface Props {
   article: CollectionEntry<'articles'>;
+  alternates: Alternates;
 }
-
-const { article } = Astro.props;
-const { Content } = await render(article);
 ---
 
-<Base
-  title={article.data.title}
-  description={article.data.description}
-  ogType="article"
-  ogImage={article.data.featureImage}
->
-  <article>
-    <h1>{article.data.title}</h1>
-    <p class="article-meta">{formatDate(article.data.pubDate)}</p>
-    <hr />
-    <Content />
-  </article>
-</Base>
+<ArticlePage {...Astro.props} />

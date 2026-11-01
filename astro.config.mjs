@@ -3,5 +3,12 @@ import { defineConfig } from 'astro/config';
 import imageFigures from './src/plugins/image-figures.ts';
 
 export default defineConfig({
+  site: 'https://seongjin.me',
+  trailingSlash: 'always',
+  i18n: {
+    defaultLocale: 'ko',
+    locales: ['ko', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [imageFigures()],
 });

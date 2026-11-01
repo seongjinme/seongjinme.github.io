@@ -2,8 +2,11 @@
 import '@/styles/global.css';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import { type Locale, type Alternates } from '@/i18n/ui';
 
 interface Props {
+  locale: Locale;
+  alternates: Alternates;
   title?: string;
   description?: string;
   ogType?: string;
@@ -13,29 +16,46 @@ interface Props {
 const SITE_TITLE = 'Seongjin Hong';
 const SITE_DESCRIPTION = 'Seongjin Hong | Software Engineer';
 
-const { title, description = SITE_DESCRIPTION, ogType = 'website', ogImage } = Astro.props;
+const {
+  locale,
+  alternates,
+  title,
+  description = SITE_DESCRIPTION,
+  ogType = 'website',
+  ogImage,
+} = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="canonical" href={Astro.url} />
+    <link rel="canonical" href={canonicalUrl} />
+    {Object.entries(alternates).map(([language, path]) => (
+      <link rel="alternate" hreflang={language} href={new URL(path, Astro.site)} />
+    ))}
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta property="og:locale" content={locale === 'ko' ? 'ko_KR' : 'en_US'} />
+    {Object.keys(alternates)
+      .filter((language) => language !== locale)
+      .map((language) => (
+        <meta property="og:locale:alternate" content={language === 'ko' ? 'ko_KR' : 'en_US'} />
+      ))}
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_TITLE} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalUrl} />
     {ogImage && <meta property="og:image" content={ogImage} />}
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Header />
+    <Header locale={locale} alternates={alternates} />
     <main>
       <slot />
     </main>

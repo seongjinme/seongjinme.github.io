@@ -1,0 +1,31 @@
+---
+import Base from '@/layouts/Base.astro';
+import Profile from '@/components/Profile.astro';
+import ArticleList from '@/components/ArticleList.astro';
+import { getLocalizedArticles } from '@/utils/articles';
+import { localeUrl, ui, type Locale } from '@/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  home?: boolean;
+}
+
+const { locale, home = false } = Astro.props;
+const articles = await getLocalizedArticles(locale);
+const slug = home ? '' : 'articles';
+const alternates = { ko: localeUrl('ko', slug), en: localeUrl('en', slug) };
+---
+
+<Base locale={locale} alternates={alternates} title={home ? undefined : ui[locale].articles}>
+  {home && <Profile locale={locale} />}
+  <section>
+    <h2>{ui[locale].articles}</h2>
+    {ui[locale].selection && <p class="translation-note">{ui[locale].selection}</p>}
+    <ArticleList articles={home ? articles.slice(0, 5) : articles} />
+    {home && (
+      <a class="all-articles-link" href={localeUrl(locale, 'articles')}>
+        {ui[locale].allArticles(articles.length)}
+      </a>
+    )}
+  </section>
+</Base>
