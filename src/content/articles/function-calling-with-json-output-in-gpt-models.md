@@ -1,6 +1,6 @@
 ---
 title: "GPT 언어 모델에서 생성 데이터를 JSON 형태로 주고 받게 해주는 Function Calling 살펴보기"
-description: "그동안 ChatGPT 등 GPT 기반 서비스에서 JSON 처럼 규격화 된 응답을 얻어내려면 많은 수고를 감수해야 했다. 최근에 OpenAI가 공개한 Function Calling은 이러한 불편 없이 API 호출 만으로 JSON 데이터를 얻어낸 뒤, 백엔드에서 원하는 함수를 실행하게 해준다. 그 방법을 예시와 함께 알아보도록 하자."
+description: "최근 OpenAI가 공개한 Function Calling은 API 호출 만으로 JSON 데이터를 얻어낸 뒤, 백엔드에서 원하는 함수를 실행하게 해준다. 그 방법을 예시와 함께 알아본다."
 pubDate: "2023-06-29T03:29:20.000Z"
 tags: ["ai", "openai", "chatgpt"]
 featureImage: "/content/images/2023/06/cover.png"
@@ -55,19 +55,19 @@ return response["choices"][0]["message"]["content"].strip()
 위의 코드를 통해 들어오는 생성 데이터는 오직 문자열(`string`)만 포함하고 있다. 여기서는 독자의 편의를 위해 임의로 줄바꿈을 추가했다.
 
 ```
-In the movie "Inception", what is the name of the device 
+In the movie "Inception", what is the name of the device
 that allows people to enter and share dreams?
 (A) The Dreamcatcher
 (B) The PASIV Device
 (C) The Mind Explorer
 (D) The Dream Weaver
 B
-The PASIV (Portable Automated Somnacin IntraVenous) 
-Device is a briefcase-like machine used by Cobb 
-and his team to enter and share dreams. 
-It's designed to administer a sedative called somnacin, 
-which puts all users into a synchronized sleep state, 
-allowing them to connect with one another 
+The PASIV (Portable Automated Somnacin IntraVenous)
+Device is a briefcase-like machine used by Cobb
+and his team to enter and share dreams.
+It's designed to administer a sedative called somnacin,
+which puts all users into a synchronized sleep state,
+allowing them to connect with one another
 in a shared dream world.
 https://www.imdb.com/title/tt1375666/
 ```

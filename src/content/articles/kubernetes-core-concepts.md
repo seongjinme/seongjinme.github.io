@@ -1,6 +1,6 @@
 ---
 title: "쿠버네티스와 컨테이너 오케스트레이션, 그리고 핵심 설계 사상"
-description: "쿠버네티스를 이해하려면 우선 이것이 어떤 문제를 해결하고자 하는지를 알아야 한다. \n이 글에서는 컨테이너 오케스트레이션(Container Orchestration)의 개념과, 이것의 구현체로서 쿠버네티스가 가진 핵심적인 설계 사상들을 살펴본다."
+description: "컨테이너 오케스트레이션(Container Orchestration)의 개념과, 이것의 구현체로서 쿠버네티스가 가진 핵심적인 설계 사상들을 살펴본다."
 pubDate: "2022-01-31T11:45:00.000Z"
 updatedDate: "2022-02-10T01:05:35.000Z"
 tags: ["kubernetes"]

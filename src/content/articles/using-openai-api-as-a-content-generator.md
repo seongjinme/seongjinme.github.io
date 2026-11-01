@@ -1,22 +1,18 @@
 ---
-title: "OpenAI API를 애플리케이션의 백엔드 데이터 에이전트로 활용한 KinoQuizAI 개발 후기"
-description: "ChatGPT를 계기로 생성AI(Generative AI)는 대화형 에이전트나 컨텐츠 생성 모델로서 유용성이 입증된 상태다. 하지만 이것에 포함되어 있는 방대한 학습 정보 자체를 일종의 데이터 소스로 활용하는 방안은 없을까? 이 의문을 해소하기 위해 만든 KinoQuizAI 프로젝트의 개발 과정과 문제 해결 경험, 그리고 후기를 정리했다."
+title: "ChatGPT API를 이용한 영화 퀴즈앱 KinoQuizAI 개발 후기"
+description: "ChatGPT가 자체적으로 보유한 방대한 학습 정보 자체를 데이터 소스로 활용하는 방안은 없을까? 이걸 시험하기 위해 만든 영화 퀴즈앱 개발 과정과 문제 해결 경험, 그리고 후기를 정리했다."
 pubDate: "2023-05-31T08:29:45.000Z"
 tags: ["ai", "openai", "project", "chatgpt"]
 featureImage: "/content/images/2023/05/cover-1.jpg"
 ---
 
-[예전에 ChatGPT와 프롬프트 만으로 간단한 SNS 애플리케이션을 만들어 본 적이 있다.](/experiment-of-creating-web-app-with-chatgpt/) 이 경험에서 확신을 얻었다. 적절한 지시어 만으로 고도로 양식화 된 문법의 코드 생성까지 가능한 수준이라면, 학습된 데이터에서 내게 필요한 내용 만을 골라낸 뒤 일정한 규격으로 파싱하여 바로 얻어내는 일도 가능할 것이다. 자연어로 결과물을 내보내는 대화형 에이전트 대신, **데이터베이스에 바로 삽입할 수 있도록 전처리된 결과물을 뽑아내는 백엔드 데이터 에이전트 역할을 언어 모델에게 맡겨보는 것**이다.
+[예전에 ChatGPT와 프롬프트 만으로 간단한 SNS 애플리케이션을 만들어 본 적이 있다.](/experiment-of-creating-web-app-with-chatgpt/) 이 경험에서 확신을 얻었다. 적절한 지시어 만으로 고도로 양식화 된 문법의 코드 생성까지 가능한 수준이라면, 학습된 데이터에서 내게 필요한 내용 만을 골라낸 뒤 일정한 규격으로 파싱하여 바로 얻어내는 일도 가능할 것이다. 자연어로 결과물을 내보내는 대화형 에이전트 대신, **콘텐츠를 직접 생성하고 이를 데이터베이스에 바로 삽입할 수 있도록 결과물을 뽑아내는 역할을 언어 모델에게 맡겨보는 것**이다.
 
 ![KinoQuizAI 프로젝트 앱 화면](/content/images/2023/05/kinoquizai-part1-800px-3.gif)
 
-이 아이디어를 토대로 지난 4월에 **[KinoQuizAI](https://github.com/seongjinme/KinoQuizAI)**라는 간단한 프로젝트를 만들었다. GPT 언어 모델이 생성한 영화 퀴즈를 풀고 점수를 얻는 웹 게임이다. **ChatGPT와 같은 언어 모델 기반 서비스가 대화형 에이전트 뿐만 아니라 백엔드 기능 수행 도구로써도 유용할 것인가**를 확인하는 것이 목적이었다. 결과는 기대 이상이었다. 이번 글에서는 KinoQuizAI의 개발 과정과 문제 해결 경험, 그리고 후기를 정리하고자 한다.
+이 아이디어를 토대로 지난 4월에 [KinoQuizAI](https://github.com/seongjinme/KinoQuizAI)라는 간단한 프로젝트를 만들었다. GPT 언어 모델이 생성한 영화 퀴즈를 풀고 점수를 얻는 웹 게임이다. 결과는 기대 이상이었다. 이번 글에서는 KinoQuizAI의 개발 과정과 문제 해결 경험, 그리고 후기를 정리하고자 한다.
 
-> 🔗 [KinoQuizAI](https://kinoquiz.app)
-> KinoQuizAI is an ChatGPT powered movie quiz game that lets you compete with others while testing your movie knowledge.
-
-> 🔗 [GitHub - seongjinme/KinoQuizAI: Django-based web application that offers AI-generated movie quizzes powered by ChatGPT API.](https://github.com/seongjinme/KinoQuizAI)
-> Django-based web application that offers AI-generated movie quizzes powered by ChatGPT API. - GitHub - seongjinme/KinoQuizAI: Django-based web application that offers AI-generated movie quizzes pow…
+- 🔗 [GitHub Repository](https://github.com/seongjinme/KinoQuizAI)
 
 ## 프로젝트 사전 기획 사항
 
@@ -26,7 +22,7 @@ GPT에 포함된 학습 데이터는 웹에 공개된 범용 정보들에 기반
 
 ### 서비스 언어 선택 : 영문
 
-ChatGPT 서비스의 근간이 되는 GPT 언어 모델에서 한국어 데이터 학습량은 영어 데이터에 비해 극히 적다. [OpenAI가 공개한 데이터](https://github.com/openai/gpt-3/tree/master/dataset_statistics)에 따르면, GPT-3 기준으로 **전체 사전학습 데이터 가운데 한국어 데이터는 문서 단위로 0.019%, 단어 단위로 0.017%**에 불과했다. 이대로는 한국어로 생성한 영화 콘텐츠의 품질을 보장하기 어렵다고 판단했다. [OpenAI Playground](https://platform.openai.com/playground)에서 `gpt-3.5-turbo` 모델로 직접 실험한 결과도 예상과 다르지 않았다. 이러한 현실을 고려하여 KinoQuizAI는 처음부터 영문 서비스로 기획했다.
+ChatGPT 서비스의 근간이 되는 GPT 언어 모델에서 한국어 데이터 학습량은 영어 데이터에 비해 극히 적다. [OpenAI가 공개한 데이터](https://github.com/openai/gpt-3/tree/master/dataset_statistics)에 따르면, **GPT-3 기준으로 전체 사전학습 데이터 가운데 한국어 데이터는 문서 단위로 0.019%, 단어 단위로 0.017%에 불과**했다. 이대로는 한국어로 생성한 영화 콘텐츠의 품질을 보장하기 어렵다고 판단했다. [OpenAI Playground](https://platform.openai.com/playground)에서 `gpt-3.5-turbo` 모델로 직접 실험한 결과도 예상과 다르지 않았다. 이러한 현실을 고려하여 KinoQuizAI는 처음부터 영문 서비스로 기획했다.
 
 ### 기술 스택 : Django, JS, Tailwind CSS, Supabase, GCP
 
@@ -175,7 +171,7 @@ https://www.imdb.com/title/tt1375666/
 
 퀴즈를 만들 때엔 창의력과 엄밀성이 함께 필요하다. 모든 퀴즈가 똑같이 주인공 이름만 묻는 식이어선 곤란하다. 애써 풀어낸 퀴즈가 엉뚱한 선택지를 정답으로 소개하는 상황도 피해야 한다. 문항과 선택지에는 다채로운 소재와 흥미 요소가 권장되고, 답안과 해설에 대해서는 내용의 정확성이 우선해야 한다.
 
-서로 다른 두 가지 특성이 퀴즈 생성 과정에 반영되도록 만드는 일은 쉽지 않았다. 하지만 결과물의 품질을 높이려면 반드시 해내야 했다. 이럴 때 필요한 것이 바로 **파라미터 튜닝(Parameter tuning)**이다. OpenAI API에 프롬프트와 함께 보낼 수 있는 `temperature`, `top_p`, `frequency_penalty`, `presence_penalty` 등의 파라미터 값을 통해 **GPT의 생성 결과물에 어느 정도의 창의성(혹은 획일성)을 부여할지 조정**하는 것이다. [각 파라미터의 용도는 OpenAI API 공식문서에서 확인하도록 하자.](https://platform.openai.com/docs/api-reference/chat/create)
+서로 다른 두 가지 특성이 퀴즈 생성 과정에 반영되도록 만드는 일은 쉽지 않았다. 하지만 결과물의 품질을 높이려면 반드시 해내야 했다. 이럴 때 필요한 것이 바로 **파라미터 튜닝(Parameter tuning)이다**. OpenAI API에 프롬프트와 함께 보낼 수 있는 `temperature`, `top_p`, `frequency_penalty`, `presence_penalty` 등의 파라미터 값을 통해 **GPT의 생성 결과물에 어느 정도의 창의성(혹은 획일성)을 부여할지 조정**하는 것이다. [각 파라미터의 용도는 OpenAI API 공식문서에서 확인하도록 하자.](https://platform.openai.com/docs/api-reference/chat/create)
 
 지난한 실험 끝에 KinoQuizAI 앱을 위한 파라미터값을 다음과 같이 정했다. `temperature`와 `top_p` 값을 모두 높게 가져가면서 보다 창의적인 문장을 구사하게 했고, `frequency_penalty`와 `presence_penalty` 또한 높게 설정하여 동일한 소재로 엇비슷한 내용이 반복되지 않도록 유도했다.
 
@@ -193,7 +189,7 @@ parameters = {
 
 ### 프롬프트 엔지니어링 결과
 
-이렇게 프롬프트 엔지니어링을 거치자 신규 콘텐츠 생성과 데이터 파싱, 수신, 전처리 및 DB 삽입 과정에 이르는 데이터 프로세싱이 매끄럽게 이어졌다. 서버 측에서는 OpenAI API와 교신한 뒤 전송받은 데이터를 검증한 뒤 바로 DB에 넣고 클라이언트로 전달하는 로직만 수행하면 되었다. ChatGPT와 같은 **언어 모델 서비스를 백엔드 데이터 에이전트로 활용하는 아이디어가 성공적으로 구현**된 것이다.
+이렇게 프롬프트 엔지니어링을 거치자 신규 콘텐츠 생성과 데이터 파싱, 수신, 전처리 및 DB 삽입 과정에 이르는 데이터 프로세싱이 매끄럽게 이어졌다. 서버 측에서는 OpenAI API와 교신한 뒤 전송받은 데이터를 검증한 뒤 바로 DB에 넣고 클라이언트로 전달하는 로직만 수행하면 되었다.
 
 ![생성 직후 KinoQuizAI DB에 전처리되어 축적된 퀴즈 데이터 화면](/content/images/2023/05/project-data-input-success-1.png)
 
@@ -315,7 +311,7 @@ return JsonResponse({
 
 ## 프로젝트를 통해 배운 것
 
-세상에는 이미 GPT와 같은 언어 모델을 정보 종합 및 요약 솔루션의 용도로 결합시킨 상용 서비스가 여럿 존재한다. 이런 서비스들에 비하면 KinoQuizAI는 여가 목적의 작은 개인 프로젝트에 불과하다. 그러나 **언어 모델을 데이터 에이전트로 활용함으로써 백엔드 영역에서의 서버 역할을 단순화** 하면서도 **다채로운 내용의 콘텐츠 생성과 데이터 축적을 동시에 구현해낸 점**에서 개인적으로 큰 뿌듯함을 느꼈다.
+세상에는 이미 GPT와 같은 언어 모델을 정보 종합 및 요약 솔루션의 용도로 결합시킨 상용 서비스가 여럿 존재한다. 이런 서비스들에 비하면 KinoQuizAI는 여가 목적의 작은 개인 프로젝트에 불과하다. 그러나 **언어 모델을 콘텐츠 생성 및 데이터 에이전트로 활용함으로써 서버 측의 역할을 단순화** 하면서도 **다채로운 내용의 콘텐츠 생성과 데이터 축적을 동시에 구현해낸 점**에서 뿌듯함을 느꼈다.
 
 다만 서비스를 이용하는 고객의 관점에서는 아쉬운 점도 남았다. 엔지니어의 입장에서 이 앱은 언어 모델에 학습된 데이터를 기반으로 안정적인 콘텐츠 생성 및 저장 솔루션을 만들어 냈다는 의의가 있다. 그러나 사용자 입장에서 이 앱은 그동안 많이 보아왔던 텍스트 기반 퀴즈 앱의 일종일 뿐이다. ChatGPT나 Bing Chat을 통해 흔하게 보아 왔던, 인공지능이 생성한 텍스트 특유의 예측불가성과 스트림 형태로 결과물이 중계되는 실시간성 등의 재미 요소가 이 프로젝트에선 배제되어 있다.
 
@@ -332,7 +328,7 @@ In "Blade Runner 2049", what is the name of the company that created replicants?
 The correct answer is (B), Tyrell Corporation. In the original "Blade Runner" movie, replicants were created by the Tyrell Corporation. In "Blade Runner 2049", a new type of replicant has been developed by the Wallace Corporation, but they are still based on the original designs from Tyrell.
 ```
 
-이 퀴즈의 실제 정답은 `(A)`다. 그런데 아래의 해설 문구 중 첫 문장에서는 `(B)`를 정답으로 소개하고 있다. 엉뚱하게도 그 다음 문장부터는 다시 `(A)`가 정답일 수밖에 없는 이유를 올바르게 해설하고 있다. 이처럼 거짓을 사실처럼 오도하거나 둘을 혼재시키는 **할루시네이션(hallucination)**이 106개 퀴즈 중 9개에서 발생하였다.
+이 퀴즈의 실제 정답은 `(A)`다. 그런데 아래의 해설 문구 중 첫 문장에서는 `(B)`를 정답으로 소개하고 있다. 엉뚱하게도 그 다음 문장부터는 다시 `(A)`가 정답일 수밖에 없는 이유를 올바르게 해설하고 있다. 이처럼 거짓을 사실처럼 오도하거나 둘을 혼재시키는 **할루시네이션(hallucination)이** 106개 퀴즈 중 9개에서 발생하였다.
 
 각종 파라미터 튜닝과 프롬프팅 기술이 더해지더라도 언어 모델 자체의 특성상 거짓 응답의 가능성은 필연적으로 발생한다. GPT를 도입한 각종 서비스들 또한 이러한 문제에 직면하고 있거나, 혹은 해결 중일 것이다. 언젠가 기회가 된다면 그 노하우를 익히고 싶다.
 

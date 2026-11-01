@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose로 Ghost 기반 기술 블로그를 간편하게 만들고 제어하기"
-description: "Docker는 Docker Compose와 함께 쓰일 때 더욱 편리해진다. 더 이상 무언가를 바꿀 때마다 \"docker rm -f\"와 \"docker run\"을 반복할 필요가 없다. Docker Compose로 여러 개의 컨테이너를 선언적으로 정의하여, 손쉽게 배포하고 제어하는 방법을 소개한다."
+description: "Docker는 Docker Compose와 함께 쓰일 때 더욱 편리해진다. Docker Compose로 여러 개의 컨테이너를 선언적으로 정의하여, 손쉽게 배포하고 제어하는 방법을 소개한다."
 pubDate: "2022-01-24T12:27:00.000Z"
 updatedDate: "2022-07-26T02:26:49.000Z"
 tags: ["docker", "blog", "career", "ghost-tag"]
@@ -262,13 +262,13 @@ $ sudo docker-compose up --detach
 잠시 기다린 후, `sudo docker-compose ps`를 실행해서 배포 상태를 확인해보자.
 
 ```bash
-      Name                    Command               State                Ports             
+      Name                    Command               State                Ports
 -------------------------------------------------------------------------------------------
-ghost              docker-entrypoint.sh node  ...   Up      2368/tcp                       
+ghost              docker-entrypoint.sh node  ...   Up      2368/tcp
 nginx-proxy        /app/docker-entrypoint.sh  ...   Up      0.0.0.0:443->443/tcp,:::443->44
                                                             3/tcp, 0.0.0.0:80->80/tcp,:::80
-                                                            ->80/tcp                       
-nginx-proxy-acme   /bin/bash /app/entrypoint. ...   Up        
+                                                            ->80/tcp
+nginx-proxy-acme   /bin/bash /app/entrypoint. ...   Up
 ```
 
 위와 같이 모든 서비스들의 `State`가 `Up` 상태로 나온다면, 앞서 `ghost` 컨테이너에 지정해 두었던 URL로 접속해보자. **단 한 줄의 커맨드로 나만의 새로운 기술 블로그가 생성된 모습을 볼 수 있을 것이다.**

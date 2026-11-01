@@ -1,6 +1,6 @@
 ---
 title: "Docker Swarm에서 컨픽(Config)으로 컨테이너에 설정값 삽입하고 관리하기"
-description: "이번 글에서는 도커 스웜(Docker Swarm)에서 컨테이너 기반 서비스를 운영할 때 필요한 설정값이나 파일을 간편하게 삽입할 수 있는 컨픽(Config) 기능을 살펴본다. 보안에 민감하지 않은 클러스터 단위의 공통 설정 정보가 있다면 이 기능을 한 번 활용해보자."
+description: "이번 글에서는 도커 스웜(Docker Swarm)에서 컨테이너 기반 서비스를 운영할 때 필요한 설정값이나 파일을 간편하게 삽입할 수 있는 컨픽(Config) 기능을 살펴본다."
 pubDate: "2022-09-06T07:54:13.000Z"
 tags: ["docker"]
 featureImage: "/content/images/2022/09/cover.png"
@@ -72,7 +72,7 @@ echo "this is my config" | docker config create my-config -
 docker config create \
 	--label env=DEV \
 	--label date=20220901 \
-	my-config ~/my-config.conf 
+	my-config ~/my-config.conf
 ```
 
 ### 컨픽 정보 조회하기

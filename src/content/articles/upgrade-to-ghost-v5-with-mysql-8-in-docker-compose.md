@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose에서 Ghost 4 기반 블로그를 Ghost 5로 간편하게 업그레이드하기"
-description: "최근에 업데이트된 Ghost 5는 오직 MySQL 8 만을 공식 지원하게 되었다. SQLite3이나 MariaDB를 이용하던 사용자라면 운영 환경에 대한 큰 변화가 불가피해졌다. 그러나 도커를 이용하면 이런 변화에 유연하게 대응할 수 있다. 이번 글에서는 도커 컴포즈(Docker Compose)로 배포한 Ghost 4 기반 블로그를 Ghost 5로 간편하게 업그레이드 하는 방법을 다룬다."
+description: "도커 컴포즈(Docker Compose)로 배포한 Ghost 4 기반 블로그를 Ghost 5로 간편하게 업그레이드 하는 방법을 다룬다."
 pubDate: "2022-07-12T09:20:20.000Z"
 updatedDate: "2022-08-11T11:52:23.000Z"
 tags: ["docker", "ghost-tag"]
@@ -41,7 +41,7 @@ Docker 환경의 장점 중 하나는 **애플리케이션의 업데이트가 �
 
 ## 업그레이드 단계별 절차
 
-Docker 환경에서 **Ghost 4를 Ghost 5로 업그레이드(+ MySQL 8로 데이터 이전)**하기 위해 필요한 작업들은 다음과 같다. 여기서는 ["Docker Compose로 Ghost 기반 기술 블로그를 간편하게 만들고 제어하기"](/how-to-build-ghost-blog-with-docker-compose/#3-%EC%84%B8-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A5%BC-%ED%95%98%EB%82%98%EC%9D%98-yaml-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%ED%95%A9%EC%B9%98%EA%B8%B0) 포스팅에서 소개한 Amazon Lightsail에서의 블로그 배포 정보를 기준으로 설명한다.
+Docker 환경에서 Ghost 4를 Ghost 5로 업그레이드(+ MySQL 8로 데이터 이전)하기 위해 필요한 작업들은 다음과 같다. 여기서는 ["Docker Compose로 Ghost 기반 기술 블로그를 간편하게 만들고 제어하기"](/how-to-build-ghost-blog-with-docker-compose/#3-%EC%84%B8-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A5%BC-%ED%95%98%EB%82%98%EC%9D%98-yaml-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%ED%95%A9%EC%B9%98%EA%B8%B0) 포스팅에서 소개한 Amazon Lightsail에서의 블로그 배포 정보를 기준으로 설명한다.
 
 1.  Ghost 관리자 화면에서 기존 게시글과 환경설정 데이터를 `JSON` 포맷으로 내려받는다.
 2.  1번 단계에서 제외된 블로그 데이터(이미지, 테마 등)를 다른 경로에 백업한다.

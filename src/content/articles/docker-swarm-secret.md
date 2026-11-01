@@ -1,6 +1,6 @@
 ---
 title: "Docker Swarm에서 시크릿(Secret)으로 패스워드 등 보안 정보 다루기"
-description: "도커 스웜(Docker Swarm)에서 환경변수나 컨픽(Config)은 평문 상태로 저장되고 오가기 때문에 보안이 필요한 데이터를 다루기에는 적합하지 않다. 암호화되지 않은 채로 전송되거나 보관되어서는 안 되는 패스워드, 인증서, 키파일, 기타 텍스트 및 바이너리 파일을 다룰 때엔 시크릿(Secret)을 이용해보자."
+description: "암호화되지 않은 채로 전송되거나 보관되어서는 안 되는 패스워드, 인증서, 키파일, 기타 텍스트 및 바이너리 파일을 다룰 때엔 시크릿(Secret)을 이용해보자."
 pubDate: "2022-09-07T13:04:12.000Z"
 tags: ["docker"]
 featureImage: "/content/images/2022/09/cover-1.png"
@@ -65,7 +65,7 @@ echo "this is my secret" | docker secret create my-secret -
 docker secret create \
 	--label env=PROD \
 	--label date=20220901 \
-	my-secret ~/my-secret.json 
+	my-secret ~/my-secret.json
 ```
 
 ### 시크릿 정보 조회하기

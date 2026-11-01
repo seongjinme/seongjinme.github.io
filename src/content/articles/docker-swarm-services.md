@@ -1,6 +1,6 @@
 ---
 title: "Docker Swarm에서 서비스(Service) 생성하고 다루기"
-description: "도커 스웜(Docker Swarm)에서 서비스(Service)는 배포의 기본 단위이자 단일 이미지 기반의 애플리케이션 운영 단위에 해당한다. 이 글에서는 서비스(Service)와 태스크(Task)의 기본 개념을 소개한 뒤, 클러스터에서 서비스(Service)를 생성하고 다루는 방법을 안내한다."
+description: "도커 스웜(Docker Swarm)에서 다루는 서비스(Service)와 태스크(Task)의 기본 개념을 소개한 뒤, 클러스터에서 서비스(Service)를 생성하고 다루는 방법을 안내한다."
 pubDate: "2022-08-26T14:54:44.000Z"
 tags: ["docker"]
 featureImage: "/content/images/2022/08/cover-4.png"

@@ -1,6 +1,6 @@
 ---
 title: "Docker Swarm에서 시크릿(Secret)을 환경변수로 주입할 때 꼭 필요한 쉘 스크립트(Shell Script) 소개"
-description: "도커 스웜(Docker Swarm)의 시크릿(Secret)은 오직 파일 마운트 방식으로만 환경변수를 주입할 수 있다. 따라서 이 방식을 지원하지 않는 도커 이미지에는 시크릿(Secret)을 환경변수에 사용하기 어렵다. 하지만 쉘 스크립트(Shell Script)와 도커파일(Dockerfile)을 조합하면, 안 되는 것을 되게 만들 수 있다. 그 방법을 소개한다."
+description: "도커 스웜(Docker Swarm)의 시크릿(Secret)은 오직 파일 마운트 방식으로만 환경변수를 주입할 수 있다. 이 방식을 지원하지 않는 도커 이미지에 시크릿(Secret)을 주입할 수 있는 방법을 알아보자."
 pubDate: "2022-11-09T02:06:37.000Z"
 tags: ["docker", "shell-script"]
 featureImage: "/content/images/2022/11/cover.png"
@@ -57,7 +57,7 @@ Invalid database host.
 Error ID:
     500
 
-Error Code: 
+Error Code:
     ENOTFOUND
 
 ----------------------------------------

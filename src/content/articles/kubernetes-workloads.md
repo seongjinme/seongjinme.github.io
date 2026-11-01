@@ -1,6 +1,6 @@
 ---
 title: "쿠버네티스의 워크로드 리소스 살펴보기"
-description: "이번에는 쿠버네티스의 대표적인 워크로드 리소스인 레플리카셋(ReplicaSet), 디플로이먼트(Deployment), 스테이트풀셋(StatefulSet), 데몬셋(DaemonSet)을 살펴본다. 아울러 이들의 실행 구역을 논리적으로 분할하는 네임스페이스(Namespace)의 역할도 함께 들여다 본다."
+description: "레플리카셋(ReplicaSet), 디플로이먼트(Deployment), 스테이트풀셋(StatefulSet), 데몬셋(DaemonSet)을 살펴본다.  들의 실행 구역을 논리적으로 분할하는 네임스페이스(Namespace)의 역할도 함께 들여다 본다."
 pubDate: "2022-02-16T08:38:00.000Z"
 tags: ["kubernetes"]
 featureImage: "/content/images/2022/02/cover-9.png"

@@ -1,6 +1,6 @@
 ---
 title: "ChatGPT에서 채팅 만으로 웹 애플리케이션을 만드는 프롬프트 활용 사례와 시사점"
-description: "ChatGPT로 앱을 만든다? 가능한 일일까? 그래서 실험해 보았다. 오직 프롬프트 입력 만으로 ChatGPT에서 웹 애플리케이션 구현에 필요한 모든 코드를 생성하고 이를 실제로 동작시켜 보았다. 그 실험의 과정과 결과, 그리고 이를 통해 얻게 된 시사점을 자세히 소개한다."
+description: "오직 프롬프트 입력 만으로 ChatGPT에서 웹 애플리케이션 구현에 필요한 모든 코드를 생성하고 이를 실제로 동작시켜 보았다. 그 실험의 과정과 결과, 그리고 이를 통해 얻게 된 시사점을 자세히 소개한다."
 pubDate: "2023-02-26T12:08:13.000Z"
 tags: ["ai", "chatgpt"]
 featureImage: "/content/images/2023/02/cover-1.png"
@@ -16,7 +16,7 @@ featureImage: "/content/images/2023/02/cover-1.png"
 
 그래서 실험해 보았다. **오직 프롬프트 입력 만으로 ChatGPT에서 웹 애플리케이션 구현에 필요한 모든 코드를 생성하고 이를 실제로 동작시켜 보았다.** 이번 글에서는 그 실험의 과정과 결과, 그리고 이를 통해 얻게 된 시사점을 소개할 것이다.
 
-> 🖥️ 실험 결과로 완성된 애플리케이션 코드는 아래 리포지터리에서 확인할 수 있다.  
+> 🖥️ 실험 결과로 완성된 애플리케이션 코드는 아래 리포지터리에서 확인할 수 있다.
 > [https://github.com/seongjinme/Nemo-Coded-by-ChatGPT](https://github.com/seongjinme/Nemo-Coded-by-ChatGPT)
 
 ## ChatGPT가 가진 특징과 제약사항
@@ -68,17 +68,17 @@ Django 애플리케이션의 핵심 구성 요소는 모델(Model), 템플릿(Te
 먼저 **"Nemo"** 앱에 필요한 모델을 생성한다. 내가 입력한 프롬프트는 다음과 같다.
 
 ```
-I need to create a Twitter-like Django app called "Nemo". 
+I need to create a Twitter-like Django app called "Nemo".
 
 Here are the basic features of this app.
-- All visitors can view all posts of registered users in the index page. 
+- All visitors can view all posts of registered users in the index page.
 - A single post contains 1 to 1000 characters.
 - Any visitor can register and login to the app using username and password.
 - Logged-in users can create their posts.
 - Logged-in users can delete their own posts.
 - Logged-in users can give or revoke a 'Like' on the other user's post.
 
-Considering the features above, create models. 
+Considering the features above, create models.
 Use only one model. Give me just codes, not with descriptions.
 ```
 
@@ -94,10 +94,10 @@ Use only one model. Give me just codes, not with descriptions.
 ### 뷰(View) 만들기
 
 ```
-Next, create views according to features and models above. 
-Use Django's default generic views and auth views 
-to keep the codes as simple as possible. 
-All templates will be placed under `nemo/` in the project's templates directory. 
+Next, create views according to features and models above.
+Use Django's default generic views and auth views
+to keep the codes as simple as possible.
+All templates will be placed under `nemo/` in the project's templates directory.
 
 Here are views I need:
 
@@ -139,7 +139,7 @@ Next, create URLs based on the views you created above.
 이제 각각의 뷰(View)와 URL 경로에 대응할 템플릿을 만들 차례다. 가장 먼저 필요한 것은 다른 상세 페이지들마다 공통으로 포함되어야 할 구성요소들이 담긴 베이스 템플릿(`base.html`)이다. 내가 사용한 프롬프트는 다음과 같다.
 
 ```
-Next, create the base template according to features, models, views and URLs above. 
+Next, create the base template according to features, models, views and URLs above.
 Use Bootstrap from jsDelivr.
 ```
 
@@ -161,11 +161,11 @@ Use Bootstrap from jsDelivr.
 일단 유실된 맥락의 내용은 복구가 불가능하다. 어쩔 수 없이 필요한 내용을 추려서 새 프롬프트로 다시 채워주어야 한다. 이렇게 하여 수정한 인덱스 화면(`index.html`) 생성용 프롬프트는 다음과 같다. 과제 내용을 잊어먹은 친구에게 알려주듯 필요 정보를 간략하게 요약해서 다시 전달했다.
 
 ```
-Next, create a template for `IndexView` view according to features, models, views and URLs above. 
-It'll list the whole posts(`posts`) in DB. 
+Next, create a template for `IndexView` view according to features, models, views and URLs above.
+It'll list the whole posts(`posts`) in DB.
 Each post(`post`) contains `content`, `author`, `created_at` and `likes`.
-If user is the author, 'Delete' button must be appeared. 
-If user is not the author but logged user, 
+If user is the author, 'Delete' button must be appeared.
+If user is not the author but logged user,
 'Like' or 'Unlike' button must be appear.
 ```
 
@@ -176,8 +176,8 @@ If user is not the author but logged user,
 나머지 템플릿들은 코드 내용이 대체로 대동소이하므로 아래 프롬프트로 한 번에 생성했다. 다행히 URL 패턴 정보는 아직 유실되지 않은 상태여서 별 문제 없이 코드가 완성되었다.
 
 ```
-Next, create templates for `RegisterView`, `LoginView`, `CreatePostView` and `DeletePostView` 
-according to views you created before. 
+Next, create templates for `RegisterView`, `LoginView`, `CreatePostView` and `DeletePostView`
+according to views you created before.
 For every form you must add an `action` attribute with proper URL paths you created before.
 ```
 
@@ -197,9 +197,9 @@ class LoginView(LoginView):
 여기에 `next_page` 속성을 추가하여 로그인 완료시 `index` 화면으로 이동하도록 변경할 것이다. ChatGPT가 이 작업을 수행하도록 다음과 같이 입력했다.
 
 ```
-Now let's back to the views you created before. 
-For `LoginView` view, I want to redirect users to `IndexView` 
-if the login process is completed. 
+Now let's back to the views you created before.
+For `LoginView` view, I want to redirect users to `IndexView`
+if the login process is completed.
 Add `next_page` attribute to `LoginView` view below:
 
 """

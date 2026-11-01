@@ -1,6 +1,6 @@
 ---
 title: "우아한테크코스 6기 프리코스 과정에서 배운 세 가지 디자인 패턴"
-description: "같은 문제를 더 나은 방법으로 풀어내기 위해 노력하는 과정에서 배우는 것들이 있다. 디자인 패턴도 그 중 하나다. 이번 글에서는 우아한테크코스 6기의 프론트엔드 부문 프리코스를 수강하면서 익히게 된 싱글톤 패턴, 책임연쇄 패턴, 템플릿 메서드 패턴을 자바스크립트 코드와 함께 소개한다."
+description: "같은 문제를 더 나은 방법으로 풀어내기 위해 노력하는 과정에서 배우는 것들이 있다. 디자인 패턴도 그 중 하나다. 싱글톤 패턴, 책임연쇄 패턴, 템플릿 메서드 패턴을 자바스크립트 코드와 함께 소개한다."
 pubDate: "2023-11-21T05:51:04.000Z"
 tags: ["javascript", "design-pattern", "woowacourse"]
 featureImage: "/content/images/2023/11/cover-1.png"
@@ -229,7 +229,7 @@ class Benefit {
 
   isValid() {
     if (
-      this.startDate <= this.reservedDate && 
+      this.startDate <= this.reservedDate &&
       this.reservedDate <= this.endDate
     ) {
       return true;

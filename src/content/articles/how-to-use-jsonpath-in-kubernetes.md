@@ -1,6 +1,6 @@
 ---
 title: "쿠버네티스에서 JSON 데이터 처리를 위한 JSONPath 사용법"
-description: "수십, 수백 개의 노드와 리소스가 돌아가는 상용 환경에서 내게 필요한 정보만 골라내어 확인할 수 있는 방법이 있다. 바로 JSONPath를 이용하는 것이다. 이번 글에서는 JSONPath의 기본 문법과 사용법을 알아보고, 이를 쿠버네티스 환경에서 활용하는 방법을 소개한다."
+description: "수십, 수백 개의 노드와 리소스가 돌아가는 상용 환경에서 내게 필요한 정보만 골라내려면 JSONPath를 써야 한다. JSONPath의 기본 문법과 사용법을 알아보자."
 pubDate: "2022-04-15T09:34:45.000Z"
 updatedDate: "2022-04-21T13:39:17.000Z"
 tags: ["kubernetes"]
@@ -76,14 +76,14 @@ JSON 데이터에서 배열에 포함된 `n`개의 원소들은 기재된 순서
 ```json
 {
 	"book": [
-		{ 
+		{
 		"category": "fiction",
 			"author": "Herman Melville",
 			"title": "Moby Dick",
 			"isbn": "0-553-21311-3",
 			"price": 8.99
 		},
-		{ 
+		{
 			"category": "fiction",
 			"author": "J. R. R. Tolkien",
 			"title": "The Lord of the Rings",
@@ -124,14 +124,14 @@ JSONPath에서 조건부 필터는 `?(boolean expression)` 형태로 표현된�
 				"title": "Sword of Honour",
 				"price": 12.99
 			},
-			{ 
+			{
 			"category": "fiction",
 				"author": "Herman Melville",
 				"title": "Moby Dick",
 				"isbn": "0-553-21311-3",
 				"price": 8.99
 			},
-			{ 
+			{
 				"category": "fiction",
 				"author": "J. R. R. Tolkien",
 				"title": "The Lord of the Rings",

@@ -1,6 +1,6 @@
 ---
 title: "Google Apps Script로 네이버 뉴스를 채팅방으로 전송하는 서버리스 뉴스봇 만들기"
-description: "최근에 네이버 뉴스 RSS를 대신할 실시간 뉴스 모니터링 도구를 만들었다. 이번 글에서는 Google Apps Script로 서버리스 뉴스봇인 \"Naver News Fetching Bot\"을 개발하게 된 계기와 구체적인 구현 방법, 그리고 개발 과정에서 겪은 이슈들과 해결 방법을 상세히 소개한다."
+description: "최근에 네이버 뉴스 RSS를 대신할 실시간 뉴스 모니터링 도구를 만들었다. 이번 글에서는 Google Apps Script로 서버리스 뉴스봇을 개발하게 된 계기와 구체적인 구현 방법, 그리고 개발 과정에서 겪은 이슈들과 해결 방법을 상세히 소개한다."
 pubDate: "2022-05-02T13:24:47.000Z"
 updatedDate: "2022-09-21T05:39:21.000Z"
 tags: ["google-apps-script"]
