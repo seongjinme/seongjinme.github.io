@@ -76,7 +76,7 @@ docker secret create \
 ubuntu@sjhong-node-01:~$ docker secret ls
 
 ID                          NAME        DRIVER    CREATED         UPDATED
-afrubazrzcsnqn7epfi57jibs   my-secret             3 minutes ago   3 minutes ago
+sjhong-node-01-25char-ids   my-secret             3 minutes ago   3 minutes ago
 ```
 
 개별 컨픽에 대한 정보는 `docker secret inspect` 명령으로 확인한다. 역시 `JSON` 포맷으로 출력되며, `--pretty` 플래그를 붙이면 조금 더 읽기 편한 형태로 볼 수 있다. 아래에서 볼 수 있듯이, 시크릿의 경우에는 컨픽과 달리 `inspect` 명령을 사용하더라도 어떤 데이터가 담겨 있는지 노출되지 않는다. 시크릿에 담긴 데이터 원문은 오직 그 시크릿이 마운트 된 컨테이너 내부에서만 확인할 수 있다.
@@ -86,7 +86,7 @@ ubuntu@sjhong-node-01:~$ docker secret inspect my-secret
 
 [
     {
-        "ID": "afrubazrzcsnqn7epfi57jibs",
+        "ID": "sjhong-node-01-25char-ids",
         "Version": {
             "Index": 899
         },
@@ -161,8 +161,8 @@ openssl rand -base64 32 | docker secret create mysql_password -
 ubuntu@sjhong-node-01:~$ docker secret ls
 
 ID                          NAME                  DRIVER    CREATED              UPDATED
-x57ulnzz04ubh0gy0mlzr28aw   mysql_password                  About a minute ago   About a minute ago
-f4etgiqia5xad1l70s329kkd4   mysql_root_password             About a minute ago   About a minute ago
+sjhong-secret-001-25chars   mysql_password                  About a minute ago   About a minute ago
+sjhong-secret-002-25chars   mysql_root_password             About a minute ago   About a minute ago
 ```
 
 ### 시크릿을 서비스에 적용하기
@@ -201,7 +201,6 @@ docker service create \
 ubuntu@sjhong-node-01:~$ docker container exec $(docker ps --filter name=db -q) cat /run/secrets/mysql_password
 
 # 앞서 openssl rand -base64 명령어로 생성한 비밀번호가 출력된다.
-C97wMywvpnsAHqJA6Z+C9Bu0yHDV1o5Yiw9sc361Ec0=
 ```
 
 ### 시크릿 적용 여부 확인하기

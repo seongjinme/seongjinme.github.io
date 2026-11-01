@@ -91,11 +91,11 @@ docker swarm init --advertise-addr <매니저 노드 IP주소>
 스웜 모드(Swarm Mode) 활성화가 완료되면 아래와 같은 안내문이 출력된다.
 
 ```bash
-Swarm initialized: current node (9yubq203dgcl82o3n2bb2s31w) is now a manager.
+Swarm initialized: current node ({node_id}) is now a manager.
 
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-3h415tip2x8wh4xyv9g3uel3sp6ldrgsayusfvf4ebb8b36bvy-e0ghonmhzr286anttg7eybbd3 172.31.14.44:2377
+    docker swarm join --token {token} {ipaddress}:2377
 
 To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 ```
@@ -114,7 +114,7 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Active         Leader           20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Active         Leader           20.10.17
 ```
 
 도커 데스크탑(Docker Desktop)에서도 위와 같은 방법으로 단일 노드 구성을 빠르게 진행할 수 있다. 단, **맥(Mac) 또는 윈도우(Windows)에서 도커 데스크탑(Docker Desktop)을 쓸 때엔 여러 개의 노드로 구성된 클러스터를 만들 수 없다**는 점에 유의하자.
@@ -128,13 +128,13 @@ ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER 
 ```bash
 To add a worker to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-3h415tip2x8wh4xyv9g3uel3sp6ldrgsayusfvf4ebb8b36bvy-e0ghonmhzr286anttg7eybbd3 172.31.14.44:2377
+    docker swarm join --token {token} {ipaddress}:2377
 ```
 
 안내문을 살펴보면 워커 노드 추가를 위한 명령어가 포함되어 있다. 워커 노드로 추가할 호스트에 접속해서 도커 엔진(Docker Engine) 설치와 필요 포트 개방을 마친 후, 위의 명령어를 실행시키면 `This node joined a swarm as a worker.`란 간결한 메시지와 함께 클러스터에 추가된다.
 
 ```bash
-ubuntu@sjhong-node-02:~$ docker swarm join --token SWMTKN-1-3h415tip2x8wh4xyv9g3uel3sp6ldrgsayusfvf4ebb8b36bvy-e0ghonmhzr286anttg7eybbd3 172.31.14.44:2377
+ubuntu@sjhong-node-02:~$ docker swarm join --token {token} {ipaddress}:2377
 
 # 노드 추가가 완료되면 아래 메시지가 출력된다.
 This node joined a swarm as a worker.
@@ -147,10 +147,10 @@ This node joined a swarm as a worker.
 ubuntu@sjhong-node-01:~$ docker swarm join-token manager
 To add a manager to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-3va9gxqumnvfax1tivnhheu785lypaepxw7mr3p9rsvifnogn1-0zsoazv4prylgfxqsbsbahi99 172.31.14.44:2377
+    docker swarm join --token {token} {ipaddress}:2377
 
 # 매니저 노드로 추가할 호스트에 접속해서 위의 명령문을 실행한다.
-ubuntu@sjhong-node-03:~$ docker swarm join --token SWMTKN-1-3va9gxqumnvfax1tivnhheu785lypaepxw7mr3p9rsvifnogn1-0zsoazv4prylgfxqsbsbahi99 172.31.14.44:2377
+ubuntu@sjhong-node-03:~$ docker swarm join --token {token} {ipaddress}:2377
 
 # 노드 추가가 완료되면 아래 메시지가 출력된다.
 This node joined a swarm as a manager.
@@ -188,9 +188,9 @@ ubuntu@sjhong-node-01:~$ docker node inspect self --pretty
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Active         Leader           20.10.17
-rf3q20h822xy879xj7sdzsqbl     sjhong-node-02   Ready     Active                          20.10.17
-ic3zkeh869dkenaww6iahztnk     sjhong-node-03   Ready     Active         Reachable        20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Active         Leader           20.10.17
+sjhong-node-02-25char-ids     sjhong-node-02   Ready     Active                          20.10.17
+sjhong-node-03-25char-ids     sjhong-node-03   Ready     Active         Reachable        20.10.17
 ```
 
 `docker node ls` 명령어는 현재 클러스터에 구성된 노드들의 각 `ID`값과 `HOSTNAME`, `STATUS`, `AVAILABILITY`, 그리고 `MANAGER STATUS`를 보여준다. 노드 `ID`값 옆에 붙은 `*` 표시는 위의 조회 명령을 수행한 현재 노드를 의미한다.
@@ -226,9 +226,9 @@ Node sjhong-node-02 promoted to a manager in the swarm.
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Active         Leader           20.10.17
-rf3q20h822xy879xj7sdzsqbl     sjhong-node-02   Ready     Active         Reachable        20.10.17
-ic3zkeh869dkenaww6iahztnk     sjhong-node-03   Ready     Active         Reachable        20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Active         Leader           20.10.17
+sjhong-node-02-25char-ids     sjhong-node-02   Ready     Active         Reachable        20.10.17
+sjhong-node-03-25char-ids     sjhong-node-03   Ready     Active         Reachable        20.10.17
 ```
 
 이로써 3개의 노드가 모두 매니저 노드로 바뀌었다. 이번에는 `sjhong-node-01`만 매니저 노드로 두고, 나머지 2개를 워커 노드로 동시에 바꿔보자. `promote`, `demote` 명령을 이용하면 여러 노드의 상태를 한 번에 변경할 수 있다.
@@ -310,9 +310,9 @@ sjhong-node-01
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Drain          Leader           20.10.17
-rf3q20h822xy879xj7sdzsqbl     sjhong-node-02   Ready     Active                          20.10.17
-ic3zkeh869dkenaww6iahztnk     sjhong-node-03   Ready     Active                          20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Drain          Leader           20.10.17
+sjhong-node-02-25char-ids     sjhong-node-02   Ready     Active                          20.10.17
+sjhong-node-03-25char-ids     sjhong-node-03   Ready     Active                          20.10.17
 ```
 
 도커 스웜(Docker Swarm)에서 매니저 노드는 기본적으로 워커 노드와 똑같이 태스크를 할당 받아 실행할 수 있다. 그러나 **`drain` 상태의 매니저 노드는 새로운 태스크 할당을 받지 않고, 기존에 할당 받았던 태스크도 다른 노드로 옮긴다.** 결국 해당 노드는 클러스터 관리 기능만을 수행하게 된다. 쿠버네티스에서 `master:NoSchedule` 테인트(Taint)가 설정된 마스터 노드와 동일한 상태가 되는 셈이다.
@@ -399,9 +399,9 @@ Node left the swarm.
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Drain          Leader           20.10.17
-rf3q20h822xy879xj7sdzsqbl     sjhong-node-02   Ready     Active                          20.10.17
-ic3zkeh869dkenaww6iahztnk     sjhong-node-03   Down      Active                          20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Drain          Leader           20.10.17
+sjhong-node-02-25char-ids     sjhong-node-02   Ready     Active                          20.10.17
+sjhong-node-03-25char-ids     sjhong-node-03   Down      Active                          20.10.17
 ```
 
 앞서 `leave` 처리한 `sjhong-node-03`이 여전히 목록에 남아있는 것을 볼 수 있다. 다만 `STATUS`가 `Down`으로 변경되었다. 즉, 해당 노드는 클러스터와의 연결이 끊어진 독자적인 도커 서버로 바뀌었기에 `Down` 상태로 표기되는 것이다.
@@ -415,8 +415,8 @@ sjhong-node-03
 ubuntu@sjhong-node-01:~$ docker node ls
 
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Drain          Leader           20.10.17
-rf3q20h822xy879xj7sdzsqbl     sjhong-node-02   Ready     Active                          20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Drain          Leader           20.10.17
+sjhong-node-02-25char-ids     sjhong-node-02   Ready     Active                          20.10.17
 ```
 
 만약 제거하려는 워커 노드에 접속이 불가능하거나 기타 이유로 강제 제거가 필요한 상황이라면, `docker node rm` 명령에 `--force` 플래그를 조합하여 바로 제거할 수 있다.
@@ -458,7 +458,7 @@ Node left the swarm.
 ```bash
 ubuntu@sjhong-node-01:~$ docker node ls
 ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-9yubq203dgcl82o3n2bb2s31w *   sjhong-node-01   Ready     Active         Leader           20.10.17
+sjhong-node-01-25char-ids *   sjhong-node-01   Ready     Active         Leader           20.10.17
 kb57zh7jenb45p6pwgyg0roi1     sjhong-node-02   Ready     Active         Reachable        20.10.17
 y8rcglngmyfsint6vljzrvj6h     sjhong-node-03   Down      Active         Unreachable      20.10.17
 ```
