@@ -1,6 +1,6 @@
 ---
-title: "Three Design Patterns I Learned in the Woowacourse Precourse"
-description: "Trying to solve the same problem in a better way can teach us something new. Here are three design patterns I learned during the sixth Woowacourse frontend precourse—Singleton, Chain of Responsibility, and Template Method—with JavaScript examples."
+title: "Three Design Patterns I Learned from Woowacourse Precourse"
+description: "Trying to solve the same problem in a better way can teach us something new. Here are three design patterns I learned during the sixth Woowacourse frontend precourse, with JavaScript examples: Singleton, Chain of Responsibility, and Template Method."
 pubDate: "2023-11-21T05:51:04.000Z"
 lang: en
 tags: ["javascript", "design-pattern", "woowacourse"]
@@ -228,7 +228,7 @@ class Benefit {
 
   isValid() {
     if (
-      this.startDate <= this.reservedDate && 
+      this.startDate <= this.reservedDate &&
       this.reservedDate <= this.endDate
     ) {
       return true;
@@ -304,5 +304,5 @@ Overusing the pattern can also make a class hierarchy complicated. It is worth c
 ## References
 
 - [Erich Gamma et al., *Design Patterns*, Korean translation by Jung-A Kim, Protec Media, 2015](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=56051596)
-- [Chain of Responsibility Pattern — John Grib (in Korean)](https://johngrib.github.io/wiki/pattern/chain-of-responsibility/)
-- [Patterns. The “Chain of Responsibility” pattern. Implementation in C++ — Bestprog](https://www.bestprog.net/en/2021/09/25/patterns-the-chain-of-responsibility-pattern-implementation-in-c/)
+- [Chain of Responsibility Pattern: John Grib (in Korean)](https://johngrib.github.io/wiki/pattern/chain-of-responsibility/)
+- [Patterns. The “Chain of Responsibility” pattern. Implementation in C++: Bestprog](https://www.bestprog.net/en/2021/09/25/patterns-the-chain-of-responsibility-pattern-implementation-in-c/)
