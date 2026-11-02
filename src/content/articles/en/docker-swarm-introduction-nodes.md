@@ -4,7 +4,6 @@ description: "A beginner-friendly introduction to Docker Swarm terminology and s
 pubDate: "2022-08-11T02:54:54.000Z"
 updatedDate: "2022-08-18T07:55:34.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/08/cover-2.png"
 lang: en
 ---
 

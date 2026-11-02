@@ -4,7 +4,6 @@ description: "What is the difference between kubectl create and apply? Understan
 pubDate: "2022-03-02T00:55:00.000Z"
 updatedDate: "2022-05-26T23:38:47.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-11.png"
 lang: en
 ---
 

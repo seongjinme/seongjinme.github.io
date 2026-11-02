@@ -4,7 +4,6 @@ description: "The days when I could spend a dozen hours a day absorbed in work o
 pubDate: "2023-12-31T07:56:38.000Z"
 updatedDate: "2024-12-30T03:04:58.000Z"
 tags: ["essay", "retrospect"]
-featureImage: "/content/images/2024/01/cover-2.jpg"
 lang: en
 ---
 

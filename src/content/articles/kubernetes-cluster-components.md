@@ -4,7 +4,6 @@ description: "쿠버네티스의 핵심 제어 단위인 클러스터(Cluster)�
 pubDate: "2022-02-02T07:05:00.000Z"
 updatedDate: "2022-02-10T08:10:52.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-6.png"
 ---
 
 ## 쿠버네티스 클러스터란?

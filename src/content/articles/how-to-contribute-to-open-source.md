@@ -3,7 +3,6 @@ title: "깃허브(GitHub)에서의 오픈 소스 프로젝트 기여를 위한 �
 description: "이번 글에서는 깃허브(Github)에서 오픈 소스 프로젝트에 기여하는 방법을 안내한다. 작지만 개인적으로 뜻깊었던 첫 기여 경험담을 예시로 삼았다."
 pubDate: "2022-05-26T14:09:12.000Z"
 tags: ["github"]
-featureImage: "/content/images/2022/05/cover-1.png"
 ---
 
 이 블로그에는 본문 검색 용도로 [SearchinGhostEasy](https://github.com/gmfmi/searchinghost-easy)라는 플러그인이 붙어있다. 블로깅 플랫폼으로 쓰는 [Ghost가 검색 기능을 지원하지 않아서](https://ghost.org/docs/search/) 쓰게 된 것인데, 여러 모로 만족스러웠지만 미묘하게 불편한 점이 하나 있었다. **iOS 환경**에서 검색 입력폼을 띄웠을 때 아래와 같이 텍스트 입력 영역이 어긋나는 것이었다.

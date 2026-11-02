@@ -3,7 +3,6 @@ title: "멀티 컨테이너 파드의 대표적인 디자인 패턴들"
 description: "쿠버네티스에서 때로는 하나의 파드 안에 여러 컨테이너를 함께 운영해야 할 수 있다. 멀티 컨테이너 파드(Multi-Container Pod)의 대표적인 디자인 패턴들을 알아본다."
 pubDate: "2022-02-10T08:23:08.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-8.png"
 ---
 
 ## 멀티 컨테이너 파드란?

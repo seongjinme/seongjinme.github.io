@@ -3,7 +3,6 @@ title: "Building a Movie Quiz App with the ChatGPT API"
 description: "Could ChatGPT’s training knowledge itself serve as a data source? Here is how I built a movie quiz app to test that idea, the problems I solved, and what I learned."
 pubDate: "2023-05-31T08:29:45.000Z"
 tags: ["ai", "openai", "project", "chatgpt"]
-featureImage: "/content/images/2023/05/cover-1.jpg"
 lang: en
 ---
 

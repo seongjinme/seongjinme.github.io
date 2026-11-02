@@ -3,7 +3,6 @@ title: "쿠버네티스에서 반드시 알아야 할 서비스(Service) 유형"
 description: "파드는 특성상 생성될 때마다 내부 IP 주소가 계속 변화하게 된다. 쿠버네티스의 서비스(Service)는 이러한 파드에 탑재된 애플리케이션이 외부와 상호 통신이 가능하도록 만들어준다."
 pubDate: "2022-02-23T08:51:00.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-10.png"
 ---
 
 ## 서비스(Service)란?

@@ -4,7 +4,6 @@ description: "Docker becomes more convenient with Docker Compose. Define multipl
 pubDate: "2022-01-24T12:27:00.000Z"
 updatedDate: "2022-07-26T02:26:49.000Z"
 tags: ["docker", "blog", "career", "ghost-tag"]
-featureImage: "/content/images/2022/02/cover-6.jpg"
 lang: en
 ---
 

@@ -3,7 +3,6 @@ title: "Prompt Engineering for Better Results from ChatGPT and Other Conversatio
 description: "An introduction to prompt engineering: why it matters, practical examples, and tips for improving the quality of conversational AI output."
 pubDate: "2023-02-12T13:52:57.000Z"
 tags: ["ai", "chatgpt", "prompt"]
-featureImage: "/content/images/2023/02/cover.png"
 lang: en
 ---
 

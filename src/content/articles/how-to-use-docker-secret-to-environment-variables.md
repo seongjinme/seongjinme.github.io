@@ -3,7 +3,6 @@ title: "Docker Swarm에서 시크릿(Secret)을 환경변수로 주입할 때 �
 description: "도커 스웜(Docker Swarm)의 시크릿(Secret)은 오직 파일 마운트 방식으로만 환경변수를 주입할 수 있다. 이 방식을 지원하지 않는 도커 이미지에 시크릿(Secret)을 주입할 수 있는 방법을 알아보자."
 pubDate: "2022-11-09T02:06:37.000Z"
 tags: ["docker", "shell-script"]
-featureImage: "/content/images/2022/11/cover.png"
 ---
 
 도커 스웜(Docker Swarm)에서는 보안이 필요한 데이터를 따로 관리할 수 있도록 **시크릿(Secret)**이라는 객체를 제공한다. 시크릿에 담긴 데이터는 컨테이너 안의 인메모리 파일 시스템에 위치하고, 서비스는 이 데이터를 환경변수로 받아 컨테이너에 포함된 애플리케이션을 구동시킨다.

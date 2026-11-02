@@ -4,7 +4,6 @@ description: "An introduction to container orchestration and the core design pri
 pubDate: "2022-01-31T11:45:00.000Z"
 updatedDate: "2022-02-10T01:05:35.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-5.png"
 lang: en
 ---
 

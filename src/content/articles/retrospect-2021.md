@@ -4,7 +4,6 @@ description: "10년 만에 처음으로 공부만 했다. 어릴 때 막연히 �
 pubDate: "2022-01-03T05:21:00.000Z"
 updatedDate: "2026-01-17T17:19:16.000Z"
 tags: ["essay"]
-featureImage: "/content/images/2022/02/cover-5.jpg"
 ---
 
 ## 공부하고 배운 것

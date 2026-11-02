@@ -3,7 +3,6 @@ title: "Kubernetes Workload Resources and Namespaces"
 description: "A look at ReplicaSets, Deployments, StatefulSets, DaemonSets, and the Namespaces that logically separate where they run."
 pubDate: "2022-02-16T08:38:00.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-9.png"
 lang: en
 ---
 

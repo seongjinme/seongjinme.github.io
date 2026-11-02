@@ -4,7 +4,6 @@ description: "One of the hardest decisions when starting a technical blog is cho
 pubDate: "2022-01-10T06:12:32.000Z"
 updatedDate: "2022-02-08T06:56:54.000Z"
 tags: ["career", "essay", "blog", "ghost-tag"]
-featureImage: "/content/images/2022/02/cover-3.jpg"
 lang: en
 ---
 

@@ -3,7 +3,6 @@ title: "A Beginner’s Guide to Contributing to Open Source on GitHub"
 description: "How to contribute to an open-source project on GitHub, illustrated by my small but personally meaningful first contribution."
 pubDate: "2022-05-26T14:09:12.000Z"
 tags: ["github"]
-featureImage: "/content/images/2022/05/cover-1.png"
 lang: en
 ---
 

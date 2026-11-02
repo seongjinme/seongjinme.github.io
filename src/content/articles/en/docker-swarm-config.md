@@ -3,7 +3,6 @@ title: "Managing Container Configuration with Docker Swarm Configs"
 description: "Use the Configs to inject the settings and files needed by container-based Services in Docker Swarm."
 pubDate: "2022-09-06T07:54:13.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/09/cover.png"
 lang: en
 ---
 

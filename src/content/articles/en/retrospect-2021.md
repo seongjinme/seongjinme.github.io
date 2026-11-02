@@ -4,7 +4,6 @@ description: "For the first time in ten years, I did nothing but study. Twenty y
 pubDate: "2022-01-03T05:21:00.000Z"
 updatedDate: "2026-01-17T17:19:16.000Z"
 tags: ["essay"]
-featureImage: "/content/images/2022/02/cover-5.jpg"
 lang: en
 ---
 

@@ -3,7 +3,6 @@ title: "Deep Dive into the Services in Docker Swarm"
 description: "An introduction to Services and Tasks in Docker Swarm, followed by creating and managing Services in a cluster."
 pubDate: "2022-08-26T14:54:44.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/08/cover-4.png"
 lang: en
 ---
 

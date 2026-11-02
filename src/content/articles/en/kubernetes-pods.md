@@ -4,7 +4,6 @@ description: "A detailed look at Pods, the smallest objects deployed in a Kubern
 pubDate: "2022-02-07T08:13:00.000Z"
 updatedDate: "2022-02-10T08:17:32.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-7.png"
 lang: en
 ---
 

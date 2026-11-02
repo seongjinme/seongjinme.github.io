@@ -4,7 +4,6 @@ description: "기술 블로그를 만들 때 가장 머리 아픈 고민 중 하
 pubDate: "2022-01-10T06:12:32.000Z"
 updatedDate: "2022-02-08T06:56:54.000Z"
 tags: ["career", "essay", "blog", "ghost-tag"]
-featureImage: "/content/images/2022/02/cover-3.jpg"
 ---
 
 이 블로그를 만들기까지 오랜 시간이 소요되었다. 안타깝게도 그 중 대부분의 시간은 내가 어떤 환경과 도구에 의존하면 좋을지 헤매는 일에 쓰였다. 여기에는 워드프레스를 비롯한 여러 블로깅 도구들을 하나하나 비교하거나, 요즘 널리 쓰이는 [정적 사이트 생성기(SSG; Static Site Generator)](https://www.cloudflare.com/learning/performance/static-site-generator/#:~:text=A%20static%20site%20generator%20is,to%20users%20ahead%20of%20time.)들을 구석구석 들여다 보거나, [서툴게나마 Flask 웹 프레임워크로 직접 블로깅 도구를 만들어보는](https://github.com/seongjinme/tiny-blogger) 과정이 모두 포함되었다.

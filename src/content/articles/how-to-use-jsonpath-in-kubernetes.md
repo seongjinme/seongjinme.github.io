@@ -4,7 +4,6 @@ description: "수십, 수백 개의 노드와 리소스가 돌아가는 상용 �
 pubDate: "2022-04-15T09:34:45.000Z"
 updatedDate: "2022-04-21T13:39:17.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/04/cover-1.png"
 ---
 
 ## JSONPath란?

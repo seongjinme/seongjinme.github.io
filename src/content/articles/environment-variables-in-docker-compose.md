@@ -4,7 +4,6 @@ description: "도커 컴포즈(Docker Compose)에서 환경변수를 다루는 �
 pubDate: "2022-07-20T10:32:23.000Z"
 updatedDate: "2022-08-11T11:53:21.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/07/cover-1.png"
 ---
 
 ## 환경변수 삽입 및 관리 방법

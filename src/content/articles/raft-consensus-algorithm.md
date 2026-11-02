@@ -3,7 +3,6 @@ title: "분산 시스템의 내결함성을 높이는 뗏목 합의 알고리즘
 description: "뗏목 합의 알고리즘(Raft Consensus Algorithm)은 다수 노드로 이루어진 분산 시스템에서 전체 노드의 최신화 및 동기화, 그리고 내결함성을 동시에 구현하기 위해 만들어진 합의 알고리즘의 일종이다."
 pubDate: "2022-08-17T15:00:06.000Z"
 tags: ["system"]
-featureImage: "/content/images/2022/08/cover-3.png"
 ---
 
 지난 글에서는 [도커 스웜(Docker Swarm)의 다중 노드 클러스터에서 매니저 노드를 강제로 제거했을 때 벌어지는 일](/docker-swarm-introduction-nodes/#%EB%A7%A4%EB%8B%88%EC%A0%80-%EB%85%B8%EB%93%9C%EB%A5%BC-%EA%B0%95%EC%A0%9C%EB%A1%9C-%EC%A0%9C%EA%B1%B0%ED%95%98%EB%A9%B4-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC)을 소개했었다. 매니저 노드가 3개일 때엔 하나가 멈춰도 괜찮았던 반면, 2개일 땐 하나만 멈춰도 클러스터의 관리 기능이 마비되었다. 얼핏 보면 당혹스러울 수 있지만, 뗏목 합의 알고리즘(Raft Consensus Algorithm)이 적용된 분산 시스템에서는 자연스러운 현상이다.

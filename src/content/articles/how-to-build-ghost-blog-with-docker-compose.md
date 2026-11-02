@@ -4,7 +4,6 @@ description: "Docker는 Docker Compose와 함께 쓰일 때 더욱 편리해진�
 pubDate: "2022-01-24T12:27:00.000Z"
 updatedDate: "2022-07-26T02:26:49.000Z"
 tags: ["docker", "blog", "career", "ghost-tag"]
-featureImage: "/content/images/2022/02/cover-6.jpg"
 ---
 
 [지난 글](/how-to-build-ghost-blog-with-docker/)에서 Docker와 Ghost CMS로 Amazon Lightsail에 기술 블로그를 간단히 개설하는 과정을 소개했다. Docker 환경에서는 Docker Engine만 설치되어 있다면 어디서든 원하는 구성으로 애플리케이션을 큰 무리 없이 배포할 수 있으므로, 내게 필요한 스택을 사전에 하나하나 준비해야 하는 스트레스로부터 자유로울 수 있다는 강점이 있다.

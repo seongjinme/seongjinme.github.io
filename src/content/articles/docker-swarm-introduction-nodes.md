@@ -4,7 +4,6 @@ description: "이번 글에서는 도커 스웜(Docker Swarm)의 주요 용어�
 pubDate: "2022-08-11T02:54:54.000Z"
 updatedDate: "2022-08-18T07:55:34.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/08/cover-2.png"
 ---
 
 ## 개요

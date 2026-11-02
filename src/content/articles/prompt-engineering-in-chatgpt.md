@@ -3,7 +3,6 @@ title: "ChatGPT를 비롯한 대화형 AI 서비스에서 더 좋은 결과물�
 description: "대화형 인공지능이 생성하는 결과물의 품질을 높이는 프롬프트 엔지니어링(Prompt Engineering)을 소개한다. 왜 프롬프트 엔지니어링이 필요한가를 알아보고, 활용 사례와 요령을 안내한다."
 pubDate: "2023-02-12T13:52:57.000Z"
 tags: ["ai", "chatgpt", "prompt"]
-featureImage: "/content/images/2023/02/cover.png"
 ---
 
 대화형 인공지능(Conversation AI)의 본격적인 시대가 열렸다. ChatGPT(챗GPT)의 공개는 이 시대의 도래를 본격적으로 알린 신호탄이 됐다. [겨우 두어 달 전에 공개된 시험용 버전의 월 사용자가 이미 1억 명을 넘어섰다.](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app) 소셜 미디어엔 ChatGPT의 재치 있는 답변에 놀란 사람들의 후기가 가득하고, 언론엔 각종 인증 시험들을 어렵지 않게 통과한 ChatGPT의 잠재력에 놀란 보도가 가득하다.

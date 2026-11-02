@@ -3,7 +3,6 @@ title: "Docker Swarm에서 컨픽(Config)으로 컨테이너에 설정값 삽입
 description: "이번 글에서는 도커 스웜(Docker Swarm)에서 컨테이너 기반 서비스를 운영할 때 필요한 설정값이나 파일을 간편하게 삽입할 수 있는 컨픽(Config) 기능을 살펴본다."
 pubDate: "2022-09-06T07:54:13.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/09/cover.png"
 ---
 
 현재 이 블로그에는 [리버스 프록시(Reverse Proxy)](https://www.cloudflare.com/ko-kr/learning/cdn/glossary/reverse-proxy/) 용도로 [`nginx-proxy`](https://hub.docker.com/r/nginxproxy/nginx-proxy) 컨테이너가 붙어있다. 이 컨테이너는 `http`를 통해 이루어지는 파일 업로드 용량을 최대 `2MB`로 제한한다.

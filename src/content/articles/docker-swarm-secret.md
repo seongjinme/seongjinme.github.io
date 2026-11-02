@@ -3,7 +3,6 @@ title: "Docker Swarm에서 시크릿(Secret)으로 패스워드 등 보안 정�
 description: "암호화되지 않은 채로 전송되거나 보관되어서는 안 되는 패스워드, 인증서, 키파일, 기타 텍스트 및 바이너리 파일을 다룰 때엔 시크릿(Secret)을 이용해보자."
 pubDate: "2022-09-07T13:04:12.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/09/cover-1.png"
 ---
 
 2022년 9월 현재 이 블로그는 Ghost 5 버전에 MySQL 8이 조합된 형태로 운영되고 있다. MySQL을 쓰게 된 부득이한 계기에 대해서는 [이전의 업그레이드 안내 포스팅](/upgrade-to-ghost-v5-with-mysql-8-in-docker-compose/)에서 소개한 바 있다. 업그레이드 과정에서 도커의 편의성을 실감하기도 했지만, 한 가지 고민도 생겼다. 환경변수로 넘기는 **모든 정보가 호스트에 평문으로 남는다**는 것이다. 보안이 크게 필요치 않은 정보라면 괜찮겠지만, DBMS의 `root` 계정 비밀번호 등을 이런 식으로 다루는 것은 바람직하지 않다.

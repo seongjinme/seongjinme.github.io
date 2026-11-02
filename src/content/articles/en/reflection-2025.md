@@ -3,7 +3,6 @@ title: "2025"
 description: "Not having to explain a single thing about my past to anyone. I loved that freedom. Enough to choose a life in Germany, ten thousand kilometers from home."
 pubDate: "2026-01-02T10:09:24.000Z"
 tags: ["essay", "reflection", "retrospect"]
-featureImage: "/content/images/2026/01/cover.jpg"
 lang: en
 ---
 

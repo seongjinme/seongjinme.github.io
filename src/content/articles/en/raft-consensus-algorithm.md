@@ -3,7 +3,6 @@ title: "Raft Consensus, Quorum, and Fault Tolerance in Distributed Systems"
 description: "Raft is a consensus algorithm designed to keep nodes in a distributed system synchronized and up to date while providing fault tolerance."
 pubDate: "2022-08-17T15:00:06.000Z"
 tags: ["system"]
-featureImage: "/content/images/2022/08/cover-3.png"
 lang: en
 ---
 

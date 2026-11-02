@@ -3,7 +3,6 @@ title: "Function Calling to Exchange JSON Data with GPT Models"
 description: "OpenAI’s newly released Function Calling lets an API call produce JSON arguments for functions in your backend. Here is how it works, with examples."
 pubDate: "2023-06-29T03:29:20.000Z"
 tags: ["ai", "openai", "chatgpt"]
-featureImage: "/content/images/2023/06/cover.png"
 lang: en
 ---
 

@@ -3,7 +3,6 @@ title: "Common Design Patterns for Multi-Container Pods"
 description: "Sometimes Kubernetes needs multiple containers running together in one Pod. Here are the common design patterns for multi-container Pods."
 pubDate: "2022-02-10T08:23:08.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-8.png"
 lang: en
 ---
 

@@ -4,7 +4,6 @@ description: "Docker를 이용하면 단 세 번의 명령어 실행으로 Ghost
 pubDate: "2022-01-13T05:24:00.000Z"
 updatedDate: "2022-02-08T06:57:45.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/02/cover-4.jpg"
 ---
 
 설치형 [Ghost](https://ghost.org/)는 Node v14, MySQL 5.7 혹은 8.0, 그리고 Nginx를 기본 스택으로 요구한다. 그러나 Docker를 이용하면 [Ghost](https://ghost.org/) 기반 CMS를 서버 환경에 구애받지 않고 간편하게 구축할 수 있다. 이렇게 구축된 환경에서는 **필요한 개별 스택을 직접 관리해야 하는 번거로움이 줄어들고, 구성요소의 배포 및 업데이트 과정을 단 한 줄의 명령어로 빠르게 처리**할 수 있게 된다.

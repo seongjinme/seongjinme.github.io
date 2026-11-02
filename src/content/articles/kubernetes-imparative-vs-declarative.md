@@ -4,7 +4,6 @@ description: "kubectl create와 apply의 차이는 무엇일까? 이걸 이해�
 pubDate: "2022-03-02T00:55:00.000Z"
 updatedDate: "2022-05-26T23:38:47.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-11.png"
 ---
 
 프로그래밍의 주요 패러다임으로 명령형 프로그래밍과 선언형 프로그래밍이 있듯이, 코드로서의 인프라(IaC; Infrastructure as a Code) 영역에서도 **명령형 접근법**과 **선언형 접근법**이 존재한다.

@@ -3,7 +3,6 @@ title: "GPT 언어 모델에서 생성 데이터를 JSON 형태로 주고 받게
 description: "최근 OpenAI가 공개한 Function Calling은 API 호출 만으로 JSON 데이터를 얻어낸 뒤, 백엔드에서 원하는 함수를 실행하게 해준다. 그 방법을 예시와 함께 알아본다."
 pubDate: "2023-06-29T03:29:20.000Z"
 tags: ["ai", "openai", "chatgpt"]
-featureImage: "/content/images/2023/06/cover.png"
 ---
 
 GPT와 같은 거대 언어 모델(LLM)과 애플리케이션의 결합을 시도해 본 엔지니어라면 생성 데이터의 양식 문제로 머리 아팠던 경험이 한 번쯤은 있을 것이다. **자연어로 장황하게 쓰인 텍스트가 아닌, JSON 처럼 규격화 된 응답**을 언어 모델로부터 받아내려면 각종 프롬프트 엔지니어링과 잔기술을 동원해야 했다. 지난 [KinoQuizAI 프로젝트](https://kinoquiz.app)에서 가장 고생했던 지점이 바로 GPT로 생성한 데이터 양식의 일관성 유지였다.

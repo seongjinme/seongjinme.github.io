@@ -3,7 +3,6 @@ title: "A Shell Script for Injecting Docker Swarm Secrets as Environment Variabl
 description: "Docker Swarm Secrets are mounted as files. Learn how to use them as environment variables in images that do not support file-based input."
 pubDate: "2022-11-09T02:06:37.000Z"
 tags: ["docker", "shell-script"]
-featureImage: "/content/images/2022/11/cover.png"
 lang: en
 ---
 

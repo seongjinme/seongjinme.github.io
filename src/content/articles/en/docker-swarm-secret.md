@@ -3,7 +3,6 @@ title: "Handling the Sensitive Data with Docker Swarm Secrets"
 description: "Use Secrets for passwords, certificates, key files, and other text or binary data that should not be transmitted or stored unencrypted."
 pubDate: "2022-09-07T13:04:12.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/09/cover-1.png"
 lang: en
 ---
 

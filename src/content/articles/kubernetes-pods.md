@@ -4,7 +4,6 @@ description: "쿠버네티스 클러스터에서 이용되는 최소 단위의 �
 pubDate: "2022-02-07T08:13:00.000Z"
 updatedDate: "2022-02-10T08:17:32.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-7.png"
 ---
 
 ## 기본 개념

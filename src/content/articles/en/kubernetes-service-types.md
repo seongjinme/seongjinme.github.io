@@ -3,7 +3,6 @@ title: "Essential Kubernetes Service Types"
 description: "Pods receive changing internal IP addresses whenever they are created. Kubernetes Services let applications running in those Pods communicate with the outside world."
 pubDate: "2022-02-23T08:51:00.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-10.png"
 lang: en
 ---
 

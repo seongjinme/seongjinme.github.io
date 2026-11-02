@@ -4,7 +4,6 @@ description: "In production environments with dozens or hundreds of nodes and re
 pubDate: "2022-04-15T09:34:45.000Z"
 updatedDate: "2022-04-21T13:39:17.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/04/cover-1.png"
 lang: en
 ---
 

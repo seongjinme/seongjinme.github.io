@@ -4,7 +4,6 @@ description: "A real-time news monitoring replacement for Naver News RSS: why I 
 pubDate: "2022-05-02T13:24:47.000Z"
 updatedDate: "2022-09-21T05:39:21.000Z"
 tags: ["google-apps-script"]
-featureImage: "/content/images/2022/05/cover-1.jpg"
 lang: en
 ---
 

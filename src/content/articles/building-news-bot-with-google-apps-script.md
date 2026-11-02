@@ -4,7 +4,6 @@ description: "최근에 네이버 뉴스 RSS를 대신할 실시간 뉴스 모�
 pubDate: "2022-05-02T13:24:47.000Z"
 updatedDate: "2022-09-21T05:39:21.000Z"
 tags: ["google-apps-script"]
-featureImage: "/content/images/2022/05/cover-1.jpg"
 ---
 
 시작은 단순했다. 어느날, 회사에서 일하던 애인이 물었다.

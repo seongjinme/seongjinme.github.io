@@ -4,7 +4,6 @@ description: "도커 컴포즈(Docker Compose)로 배포한 Ghost 4 기반 블�
 pubDate: "2022-07-12T09:20:20.000Z"
 updatedDate: "2022-08-11T11:52:23.000Z"
 tags: ["docker", "ghost-tag"]
-featureImage: "/content/images/2022/07/cover.png"
 ---
 
 본론으로 들어가기에 앞서, Ghost 5가 운영 환경 측면에서 예전과 달라진 점을 먼저 짚어보려고 한다. 기존에 Ghost 3.x 또는 4.x 버전을 설치형으로 이용해왔던 사용자에게 이번 변화점은 중요하다.

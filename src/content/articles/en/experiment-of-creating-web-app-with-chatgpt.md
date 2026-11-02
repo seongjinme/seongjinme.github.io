@@ -3,7 +3,6 @@ title: "Building a Web Application Through ChatGPT Conversation"
 description: "I generated all the code for a working web application using only ChatGPT prompts. Here are the process, results, and what the experiment taught me."
 pubDate: "2023-02-26T12:08:13.000Z"
 tags: ["ai", "chatgpt"]
-featureImage: "/content/images/2023/02/cover-1.png"
 lang: en
 ---
 

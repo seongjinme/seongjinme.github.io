@@ -4,7 +4,6 @@ description: "Docker lets you set up and manage Ghost CMS with just three comman
 pubDate: "2022-01-13T05:24:00.000Z"
 updatedDate: "2022-02-08T06:57:45.000Z"
 tags: ["docker"]
-featureImage: "/content/images/2022/02/cover-4.jpg"
 lang: en
 ---
 

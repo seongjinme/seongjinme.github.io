@@ -3,7 +3,6 @@ title: "2024"
 description: "I never imagined that these chance events would converge into something that felt inevitable. Choices made at different times, for unrelated reasons, suddenly connected and opened a new path. Like scattered stars forming a constellation, shining as a compass in the night sky."
 pubDate: "2024-12-29T12:41:20.000Z"
 tags: ["essay", "retrospect"]
-featureImage: "/content/images/2024/12/cover-1.jpg"
 lang: en
 ---
 

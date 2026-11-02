@@ -4,7 +4,6 @@ description: "How to upgrade a Ghost 4 blog deployed with Docker Compose to Ghos
 pubDate: "2022-07-12T09:20:20.000Z"
 updatedDate: "2022-08-11T11:52:23.000Z"
 tags: ["docker", "ghost-tag"]
-featureImage: "/content/images/2022/07/cover.png"
 lang: en
 ---
 

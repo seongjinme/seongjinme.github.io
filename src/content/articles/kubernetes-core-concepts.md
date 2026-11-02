@@ -4,7 +4,6 @@ description: "컨테이너 오케스트레이션(Container Orchestration)의 개
 pubDate: "2022-01-31T11:45:00.000Z"
 updatedDate: "2022-02-10T01:05:35.000Z"
 tags: ["kubernetes"]
-featureImage: "/content/images/2022/02/cover-5.png"
 ---
 
 ## 쿠버네티스(Kubernetes)란?

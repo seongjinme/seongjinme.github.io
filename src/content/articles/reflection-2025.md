@@ -3,7 +3,6 @@ title: "2025"
 description: "누구에게든 나의 지난 삶에 대해 단 하나의 해명도 할 필요가 없다는 것. 이 해방감이 좋았다. 본국에서 1만 킬로미터 떨어진 독일에서의 삶을 선택할 만큼."
 pubDate: "2026-01-02T10:09:24.000Z"
 tags: ["essay", "reflection", "retrospect"]
-featureImage: "/content/images/2026/01/cover.jpg"
 ---
 
 ## 1

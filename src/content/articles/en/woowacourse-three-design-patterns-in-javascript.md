@@ -4,7 +4,6 @@ description: "Trying to solve the same problem in a better way can teach us some
 pubDate: "2023-11-21T05:51:04.000Z"
 lang: en
 tags: ["javascript", "design-pattern", "woowacourse"]
-featureImage: "/content/images/2023/11/cover-1.png"
 ---
 
 For a month starting in mid-October, I took part in the frontend precourse for the sixth cohort of [Woowacourse](https://story.baemin.com/6193/). Although this was only a preliminary course for selecting applicants for the main program, participating brought about many changes for me. In a community of more than **4,500 applicants**, people voluntarily created all kinds of channels and shared hundreds of posts. Thanks to them, I learned a concentrated amount of new material over those four weeks. Following a [coding style guide](https://github.com/airbnb/javascript), writing tests, refactoring, practicing object-oriented programming, and using GitHub for mutual code reviews would not have been possible in the same way without that community.
