@@ -1,0 +1,2 @@
+# Match CI's 24-hour release-age policy during local dependency resolution.
+minimumReleaseAge: 1440
