@@ -14,10 +14,13 @@
     "prettier": "prettier . \"**/*.{js,jsx,ts,tsx,astro}\" --write"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.5",
     "astro": "^7.4.2",
+    "remark-cjk-friendly": "^2.3.4",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
+    "@types/hast": "^3.0.5",
     "@types/node": "^26.6.6",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1"

@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
+import remarkCjkFriendly from 'remark-cjk-friendly';
 import imageFigures from './src/plugins/image-figures.ts';
 
 export default defineConfig({
@@ -10,5 +12,10 @@ export default defineConfig({
     locales: ['ko', 'en'],
     routing: { prefixDefaultLocale: false },
   },
-  integrations: [imageFigures()],
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkCjkFriendly],
+      rehypePlugins: [imageFigures],
+    }),
+  },
 });

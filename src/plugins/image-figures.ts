@@ -1,43 +1,29 @@
-import type { SatteriResolvedOptions } from '@astrojs/markdown-satteri';
-import type { AstroIntegration } from 'astro';
-import type { HastNode, HastPluginDefinition, HastVisitorContext } from 'satteri';
+import type { RehypePlugin } from '@astrojs/markdown-remark';
+import type { Element, Root } from 'hast';
 
-type Element = Extract<HastNode, { type: 'element' }>;
-
-export const imageFiguresPlugin: HastPluginDefinition = {
-  name: 'image-figures',
-  element: {
-    filter: ['p'],
-    visit(node, ctx) {
-      if (node.children.length !== 1) return;
-
-      const content = node.children[0];
-      const image = getStandaloneImage(content);
-      if (!image) return;
-
-      if (hasFigureAncestor(node, ctx)) return;
-
-      const caption = String(image.properties.title ?? image.properties.alt ?? '');
-      ctx.replaceNode(node, createFigure(content, caption));
-    },
-  },
+const imageFigures: RehypePlugin = () => (tree) => {
+  visit(tree, false);
 };
 
-export default function imageFigures(): AstroIntegration {
-  return {
-    name: 'image-figures',
-    hooks: {
-      'astro:config:setup': ({ config }) => {
-        const processor = config.markdown.processor;
-        if (processor.name !== 'satteri') {
-          throw new Error('image-figures requires the Sätteri Markdown processor.');
-        }
+export default imageFigures;
 
-        const options = processor.options as SatteriResolvedOptions;
-        options.hastPlugins.push(imageFiguresPlugin);
-      },
-    },
-  };
+function visit(parent: Root | Element, inFigure: boolean): void {
+  for (const [index, node] of parent.children.entries()) {
+    if (node.type !== 'element') continue;
+
+    if (!inFigure && node.tagName === 'p' && node.children.length === 1) {
+      const content = node.children[0];
+      const image = getStandaloneImage(content);
+
+      if (image && content.type === 'element') {
+        const caption = String(image.properties.title ?? image.properties.alt ?? '');
+        parent.children[index] = createFigure(content, caption);
+        continue;
+      }
+    }
+
+    visit(node, inFigure || node.tagName === 'figure');
+  }
 }
 
 function getStandaloneImage(content: Element['children'][number]): Element | undefined {
@@ -50,17 +36,7 @@ function getStandaloneImage(content: Element['children'][number]): Element | und
   if (child.type === 'element' && child.tagName === 'img') return child;
 }
 
-function hasFigureAncestor(node: Readonly<Element>, ctx: HastVisitorContext): boolean {
-  let parent: Readonly<HastNode> | undefined = ctx.parent(node);
-  while (parent) {
-    if (parent.type === 'element' && parent.tagName === 'figure') return true;
-    parent = ctx.parent(parent);
-  }
-
-  return false;
-}
-
-function createFigure(content: Element['children'][number], caption: string): Element {
+function createFigure(content: Element, caption: string): Element {
   const figure: Element = {
     type: 'element',
     tagName: 'figure',
