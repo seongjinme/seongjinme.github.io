@@ -164,6 +164,10 @@ samp {
 pre {
   max-width: 100%;
   overflow-x: auto;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
   padding: var(--space-4);
   background: var(--color-surface);
   overflow-wrap: normal;

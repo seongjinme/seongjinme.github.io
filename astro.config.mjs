@@ -17,5 +17,9 @@ export default defineConfig({
       remarkPlugins: [remarkCjkFriendly],
       rehypePlugins: [imageFigures],
     }),
+    shikiConfig: {
+      theme: 'github-light-default',
+      wrap: true,
+    },
   },
 });
