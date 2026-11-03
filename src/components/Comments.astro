@@ -1,0 +1,43 @@
+---
+import { articleComments, commentsRepository } from '@/utils/comments';
+import type { Locale } from '@/i18n/ui';
+
+interface Props {
+  slug: string;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const comments = articleComments(slug);
+---
+
+<section aria-labelledby="comments-heading">
+  <hr />
+  <h2 id="comments-heading">Comments</h2>
+  {comments.additional.map((number) => (
+    <p>
+      <a href={`https://github.com/${commentsRepository.name}/discussions/${number}`}>
+        {locale === 'ko' ? '이전 댓글 더 보기' : 'More comments from the previous blog'} (#{number})
+      </a>
+    </p>
+  ))}
+  <script
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo={commentsRepository.name}
+    data-repo-id={commentsRepository.id}
+    data-category={commentsRepository.category}
+    data-category-id={commentsRepository.categoryId}
+    data-mapping={comments.mapping}
+    data-term={comments.term}
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang={locale}
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+  ></script>
+</section>
