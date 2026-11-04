@@ -19,7 +19,6 @@ export default defineConfig({
     }),
     shikiConfig: {
       theme: 'github-light-default',
-      // wrap: true,
     },
   },
 });
