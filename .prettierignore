@@ -6,6 +6,5 @@ dist
 **/*.md
 **/*.mdx
 
-# Ignore the package lock files
-package-lock.json
+# Ignore the package lockfile
 pnpm-lock.yaml
