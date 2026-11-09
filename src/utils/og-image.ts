@@ -8,6 +8,7 @@ const imageWidth = 1200;
 const imageHeight = 630;
 const margin = 96;
 const titleAreaHeight = 360;
+const titleLetterSpacing = -1024;
 
 const colors = {
   background: '#fafaf9',
@@ -27,10 +28,10 @@ function escapeMarkup(text: string): string {
   });
 }
 
-function renderText(text: string, fontSize: number, color: string) {
+function renderText(text: string, fontSize: number, color: string, letterSpacing = 0) {
   return sharp({
     text: {
-      text: `<span foreground="${color}">${escapeMarkup(text)}</span>`,
+      text: `<span foreground="${color}" letter_spacing="${letterSpacing}">${escapeMarkup(text)}</span>`,
       font: `Noto Sans KR DemiLight ${fontSize}`,
       fontfile,
       width: imageWidth - margin * 2,
@@ -48,7 +49,7 @@ async function renderTitle(title: string) {
   const minimumFontSize = 24;
 
   for (let fontSize = preferredFontSize; fontSize >= minimumFontSize; fontSize -= 2) {
-    const titleImage = await renderText(title, fontSize, colors.title);
+    const titleImage = await renderText(title, fontSize, colors.title, titleLetterSpacing);
     if (titleImage.info.height <= titleAreaHeight) {
       return titleImage;
     }
