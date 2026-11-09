@@ -55,7 +55,7 @@ const pageTitle = title ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
     <meta property="og:url" content={canonicalUrl} />
     {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
     <script is:inline async src={GA_TRACKING_SCRIPT}></script>
-    <script is:inline>
+    <script is:inline define:vars={{ GA_TRACKING_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
