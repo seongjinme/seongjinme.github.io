@@ -1,5 +1,5 @@
 ---
-title: "How I Got the Blind SQL Injection Attack Within My Blog"
+title: "How My Blog Got the Blind SQL Injection Attack"
 description: "Someone recently cracked my blog and injected the script. I traced how they exploited a vulnerability in Ghost, by using Nginx logs and the original vulnerable code."
 pubDate: "2026-11-09T00:00:00+01:00"
 tags: ["security", "hacking"]
