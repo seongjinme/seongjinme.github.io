@@ -20,7 +20,6 @@ const alternates = { ko: localeUrl('ko', slug), en: localeUrl('en', slug) };
   {home && <Profile locale={locale} />}
   <section>
     <h2>{ui[locale].articles}</h2>
-    {ui[locale].selection && <p class="translation-note">{ui[locale].selection}</p>}
     <ArticleList articles={home ? articles.slice(0, 5) : articles} />
     {home && (
       <a class="all-articles-link" href={localeUrl(locale, 'articles')}>

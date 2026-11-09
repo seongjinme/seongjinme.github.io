@@ -325,11 +325,6 @@ hr {
   font-weight: 400;
 }
 
-.translation-note {
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
-
 html[lang='en'] {
   word-break: normal;
 }
