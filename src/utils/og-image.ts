@@ -36,7 +36,7 @@ function renderText(text: string, fontSize: number, color: string, letterSpacing
       fontfile,
       width: imageWidth - margin * 2,
       wrap: 'word-char',
-      spacing: 12,
+      spacing: 8,
       rgba: true,
     },
   })
